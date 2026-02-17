@@ -8,10 +8,12 @@
 
   imports = [
     ./fish.nix
+    ./yazi.nix
   ];
 
   home.packages = [
     pkgs.manix
+		pkgs.gemini-cli
   ];
 
   home.file = {
