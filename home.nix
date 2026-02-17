@@ -11,9 +11,12 @@
   ];
 
   home.packages = [
+    pkgs.manix
   ];
 
   home.file = {
+    ".agents/skills".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
   };
 
   home.sessionVariables = {
@@ -23,6 +26,10 @@
   programs.home-manager.enable = true;
 
   programs = {
+
+    opencode = {
+      enable = true;
+    };
 
     eza = {
       enable = true;
@@ -51,8 +58,8 @@
 
     starship = {
       enable = true;
-      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
-			enableTransience = true;
+      settings = fromTOML (builtins.readFile ./starship.toml);
+      enableTransience = true;
     };
   };
 
@@ -67,6 +74,9 @@
     eza.enable = true;
     eza.accent = "blue";
     eza.flavor = "mocha";
+
+    opencode.enable = true;
+    opencode.flavor = "mocha";
 
   };
 }
