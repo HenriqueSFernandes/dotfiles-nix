@@ -28,5 +28,9 @@
 
     spotify-player.enable = true;
     spotify-player.flavor = "mocha";
+
+    cursors.enable = true;
+    cursors.accent = "dark";
+    cursors.flavor = "mocha";
   };
 }

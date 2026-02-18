@@ -15,6 +15,7 @@
     ./fish.nix
     ./yazi.nix
     ./catppuccin.nix
+    ./zellij.nix
   ];
 
   home.packages = [
@@ -27,15 +28,9 @@
   home.file = {
     ".agents/skills".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
+		".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/ghostty";
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.catppuccin-cursors.mochaDark;
-    name = "Catppuccin-Mocha-Dark-Cursors";
-    size = 24;
-  };
 
   home.sessionVariables = {
     DIRENV_LOG_FORMAT = "";
@@ -44,47 +39,6 @@
   programs.home-manager.enable = true;
 
   programs = {
-
-    zellij = {
-      enable = true;
-      settings = {
-        pane_frames = false;
-        show_startup_tips = false;
-        keybinds = {
-          normal = {
-            "unbind \"Ctrl p\"" = { };
-            "bind \"Ctrl a\"" = {
-              SwitchToMode = "Pane";
-            };
-          }
-          // (builtins.listToAttrs (
-            map
-              (i: {
-                name = "bind \"Ctrl ${toString i}\"";
-                value = {
-                  GoToTab = i;
-                };
-              })
-              [
-                1
-                2
-                3
-                4
-                5
-                6
-                7
-                8
-                9
-              ]
-          ));
-          pane = {
-            "bind \"Ctrl a\"" = {
-              SwitchToMode = "Normal";
-            };
-          };
-        };
-      };
-    };
 
     spotify-player = {
       enable = true;
@@ -109,23 +63,6 @@
         theme = spicePkgs.themes.catppuccin;
         colorScheme = "mocha";
       };
-
-    ghostty = {
-      enable = true;
-      enableFishIntegration = true;
-      settings = {
-        font-family = "FiraCode Nerd Font";
-        font-size = 12;
-        font-feature = [
-          "calt"
-          "liga"
-          "dlig"
-        ];
-        shell-integration-features = "cursor";
-        cursor-style = "bar";
-        mouse-hide-while-typing = true;
-      };
-    };
 
     opencode = {
       enable = true;
