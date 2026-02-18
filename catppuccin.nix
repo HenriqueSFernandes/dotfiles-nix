@@ -22,5 +22,8 @@
 
     ghostty.enable = true;
     ghostty.flavor = "mocha";
+
+    spotify-player.enable = true;
+    spotify-player.flavor = "mocha";
   };
 }

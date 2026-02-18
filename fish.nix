@@ -5,7 +5,6 @@
     enable = true;
 
     shellAliases = {
-      hm = "nvim $HOME/.config/home-manager/home.nix";
       hms = "home-manager switch";
       ze = "zellij";
       lg = "lazygit";
@@ -18,6 +17,10 @@
       ls = "eza";
 
     };
+
+		functions = {
+			hm = "cd $HOME/.config/home-manager; nvim home.nix";
+		};
 
     plugins = [
       {
