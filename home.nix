@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  spicetify-nix,
+  ...
+}:
 
 {
   home.username = "ricky";
@@ -22,6 +27,14 @@
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
   };
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.catppuccin-cursors.mochaDark;
+    name = "Catppuccin-Mocha-Dark-Cursors";
+    size = 24;
+  };
+
   home.sessionVariables = {
     DIRENV_LOG_FORMAT = "";
   };
@@ -29,6 +42,16 @@
   programs.home-manager.enable = true;
 
   programs = {
+
+    spicetify =
+      let
+        spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        theme = spicePkgs.themes.catppuccin;
+        colorScheme = "mocha";
+      };
 
     ghostty = {
       enable = true;
