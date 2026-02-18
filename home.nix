@@ -9,6 +9,7 @@
   imports = [
     ./fish.nix
     ./yazi.nix
+		./catppuccin.nix
   ];
 
   home.packages = [
@@ -63,22 +64,5 @@
       settings = fromTOML (builtins.readFile ./starship.toml);
       enableTransience = true;
     };
-  };
-
-  catppuccin = {
-    fish.enable = true;
-    fish.flavor = "mocha";
-
-    fzf.enable = true;
-    fzf.accent = "blue";
-    fzf.flavor = "mocha";
-
-    eza.enable = true;
-    eza.accent = "blue";
-    eza.flavor = "mocha";
-
-    opencode.enable = true;
-    opencode.flavor = "mocha";
-
   };
 }
