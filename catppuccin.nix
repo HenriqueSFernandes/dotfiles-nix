@@ -13,7 +13,14 @@
     eza.accent = "blue";
     eza.flavor = "mocha";
 
+    yazi.enable = true;
+    yazi.accent = "blue";
+    yazi.flavor = "mocha";
+
     opencode.enable = true;
     opencode.flavor = "mocha";
+
+    ghostty.enable = true;
+    ghostty.flavor = "mocha";
   };
 }

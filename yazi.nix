@@ -22,7 +22,6 @@ in
     shellWrapperName = "y";
     initLua = ./yazi/init.lua;
     keymap = builtins.fromTOML (builtins.readFile ./yazi/keymap.toml);
-    theme = builtins.fromTOML (builtins.readFile ./yazi/theme.toml);
   };
 
   xdg.configFile."yazi/plugins/git.yazi" = {
