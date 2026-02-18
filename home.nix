@@ -45,6 +45,47 @@
 
   programs = {
 
+    zellij = {
+      enable = true;
+      settings = {
+        pane_frames = false;
+        show_startup_tips = false;
+        keybinds = {
+          normal = {
+            "unbind \"Ctrl p\"" = { };
+            "bind \"Ctrl a\"" = {
+              SwitchToMode = "Pane";
+            };
+          }
+          // (builtins.listToAttrs (
+            map
+              (i: {
+                name = "bind \"Ctrl ${toString i}\"";
+                value = {
+                  GoToTab = i;
+                };
+              })
+              [
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+              ]
+          ));
+          pane = {
+            "bind \"Ctrl a\"" = {
+              SwitchToMode = "Normal";
+            };
+          };
+        };
+      };
+    };
+
     spotify-player = {
       enable = true;
       settings = {
