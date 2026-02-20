@@ -52,6 +52,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.resolved.enable = true;
 
   services.xserver.xkb = {
     layout = "us"; # or your preferred layout

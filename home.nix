@@ -29,7 +29,8 @@
   ];
 
   home.file = {
-    ".agents/skills".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
+    ".agents/skills".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
   };
 
   home.sessionVariables = {
@@ -42,28 +43,27 @@
   programs.home-manager.enable = true;
 
   programs = {
-  rofi = {
-  enable = true;
-  };
+    rofi = {
+      enable = true;
+    };
 
-  lazygit = {
-  enable = true;
-  enableFishIntegration = true;
+    lazygit = {
+      enable = true;
+      enableFishIntegration = true;
 
-  };
+    };
 
-  hyprpanel = {
-	enable = true;
-	systemd.enable = true;
-  };
+    hyprpanel = {
+      enable = true;
+      systemd.enable = true;
+    };
 
     bat = {
       enable = true;
       config = {
-	style = "grid,header";
+        style = "grid,header";
       };
     };
-
 
     zen-browser = {
       enable = true;
@@ -73,24 +73,28 @@
     git = {
       enable = true;
       settings = {
-	user = {
-	  name = "HenriqueSFernandes";
-	  email = "henriquesardofernandes@gmail.com";
-	};
+        user = {
+          name = "HenriqueSFernandes";
+          email = "henriquesardofernandes@gmail.com";
+        };
         init.defaultBranch = "main";
-	push.autoSetupRemote = true;
+        push.autoSetupRemote = true;
       };
     };
 
-ghostty = {
+    ghostty = {
       enable = true;
       settings = {
-	font-family = "FiraCode Nerd Font";
-	font-feature = ["calt" "liga" "dlig"];
-	font-size = 12;
-	shell-integration-features = "cursor";
-	cursor-style = "bar";
-	mouse-hide-while-typing = true;
+        font-family = "FiraCode Nerd Font";
+        font-feature = [
+          "calt"
+          "liga"
+          "dlig"
+        ];
+        font-size = 12;
+        shell-integration-features = "cursor";
+        cursor-style = "bar";
+        mouse-hide-while-typing = true;
       };
     };
 
@@ -161,5 +165,7 @@ ghostty = {
       settings = fromTOML (builtins.readFile ./starship.toml);
       enableTransience = true;
     };
+
+    ripgrep.enable = true;
   };
 }
