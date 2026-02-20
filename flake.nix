@@ -9,6 +9,10 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+    };
   };
 
   outputs =
@@ -17,8 +21,10 @@
       home-manager,
       catppuccin,
       spicetify-nix,
+      zen-browser,
+      nixvim,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -27,17 +33,25 @@
       };
     in
     {
-      homeConfigurations."ricky" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit spicetify-nix;
-        };
-
+    nixosConfigurations."ricky-laptop" = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
-          ./home.nix
-          catppuccin.homeModules.catppuccin
-          spicetify-nix.homeManagerModules.default
+          ./system/configuration.nix 
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.ricky = {
+              imports = [
+                ./home.nix
+                catppuccin.homeModules.catppuccin
+                spicetify-nix.homeManagerModules.default
+              ];
+            };
+          }
         ];
       };
     };

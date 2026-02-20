@@ -5,22 +5,23 @@
     enable = true;
 
     shellAliases = {
-      hms = "home-manager switch";
       ze = "zellij";
       lg = "lazygit";
       ld = "lazydocker";
       uni = "zellij -l uni";
       hpedit = "nvim ~/.config/hypr/hyprland.conf";
       lock = "$HOME/.config/hypr/start-custom-lock.sh";
-      cat = "bat";
       oldcat = "cat";
+      cat = "bat";
+      nix-switch = "sudo nixos-rebuild switch --flake ~/.config/home-manager#ricky-laptop";
+      nix-conf = "cd ~/.config/home-manager && nvim";
       ls = "eza";
 
     };
 
-		functions = {
-			hm = "cd $HOME/.config/home-manager; nvim home.nix";
-		};
+		# functions = {
+		# nix-conf = "cd $HOME/.config/home-manager; nvim home.nix";
+		# };
 
     plugins = [
       {

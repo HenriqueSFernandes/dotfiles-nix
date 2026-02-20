@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  spicetify-nix,
+  inputs,
   ...
 }:
 
@@ -16,29 +16,83 @@
     ./yazi.nix
     ./catppuccin.nix
     ./zellij.nix
+    ./hyprland.nix
+    ./nvim.nix
+    inputs.zen-browser.homeModules.beta
+    inputs.nixvim.homeModules.nixvim
   ];
 
   home.packages = [
     pkgs.manix
     pkgs.gemini-cli
-    pkgs.alsa-plugins
-    pkgs.libpulseaudio
+    pkgs.thunar
   ];
 
   home.file = {
-    ".agents/skills".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
-		".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/ghostty";
+    ".agents/skills".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
   };
-
 
   home.sessionVariables = {
     DIRENV_LOG_FORMAT = "";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
   };
 
   programs.home-manager.enable = true;
 
   programs = {
+  rofi = {
+  enable = true;
+  };
+
+  lazygit = {
+  enable = true;
+  enableFishIntegration = true;
+
+  };
+
+  hyprpanel = {
+	enable = true;
+	systemd.enable = true;
+  };
+
+    bat = {
+      enable = true;
+      config = {
+	style = "grid,header";
+      };
+    };
+
+
+    zen-browser = {
+      enable = true;
+      suppressXdgMigrationWarning = true;
+    };
+
+    git = {
+      enable = true;
+      settings = {
+	user = {
+	  name = "HenriqueSFernandes";
+	  email = "henriquesardofernandes@gmail.com";
+	};
+        init.defaultBranch = "main";
+	push.autoSetupRemote = true;
+      };
+    };
+
+ghostty = {
+      enable = true;
+      settings = {
+	font-family = "FiraCode Nerd Font";
+	font-feature = ["calt" "liga" "dlig"];
+	font-size = 12;
+	shell-integration-features = "cursor";
+	cursor-style = "bar";
+	mouse-hide-while-typing = true;
+      };
+    };
 
     spotify-player = {
       enable = true;
@@ -56,7 +110,7 @@
 
     spicetify =
       let
-        spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       in
       {
         enable = true;
@@ -80,6 +134,10 @@
       enable = true;
       enableFishIntegration = true;
       defaultCommand = "fd --hidden --strip-cwd-prefix --exclude .git";
+    };
+
+    fd = {
+      enable = true;
     };
 
     zoxide = {
