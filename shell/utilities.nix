@@ -2,6 +2,18 @@
 {
   programs = {
 
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "HenriqueSFernandes";
+          email = "henriquesardofernandes@gmail.com";
+        };
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+      };
+    };
+
     bat = {
       enable = true;
       config = {

@@ -5,6 +5,7 @@
     ./browsers
     ./nvim
     ./tui
+    ./terminals
     ./rofi.nix
   ];
 
