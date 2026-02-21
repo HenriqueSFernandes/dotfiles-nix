@@ -11,12 +11,12 @@
   home.stateVersion = "25.11";
 
   imports = [
+    ./apps
     ./catppuccin.nix
-    ./fish.nix
     ./hypr
-    ./yazi.nix
-    ./zellij.nix
     ./nvim
+    ./shell
+    ./tui
     inputs.zen-browser.homeModules.beta
     inputs.nixvim.homeModules.nixvim
   ];
@@ -61,12 +61,6 @@
       systemd.enable = true;
     };
 
-    bat = {
-      enable = true;
-      config = {
-        style = "grid,header";
-      };
-    };
 
     zen-browser = {
       enable = true;
@@ -102,75 +96,9 @@
       };
     };
 
-    spotify-player = {
-      enable = true;
-      settings = {
-        audio_backend = "pulseaudio-backend";
-        device = {
-          name = "Laptop";
-          device_type = "computer";
-          volume = 80;
-          bitrate = 320;
-          audio_cache = true;
-        };
-      };
-    };
-
-    spicetify =
-      let
-        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-      in
-      {
-        enable = true;
-        theme = spicePkgs.themes.catppuccin;
-        colorScheme = "mocha";
-      };
-
     opencode = {
       enable = true;
     };
-
-    eza = {
-      enable = true;
-      enableFishIntegration = true;
-      icons = "always";
-      colors = "always";
-      git = true;
-    };
-
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      defaultCommand = "fd --hidden --strip-cwd-prefix --exclude .git";
-    };
-
-    fd = {
-      enable = true;
-    };
-
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
-    };
-
-    direnv = {
-      enable = true;
-      enableFishIntegration = true;
-      nix-direnv.enable = true;
-      silent = true;
-    };
-
-    starship = {
-      enable = true;
-      enableFishIntegration = true;
-      settings = fromTOML (builtins.readFile ./starship.toml);
-      enableTransience = true;
-    };
-
-    ripgrep.enable = true;
 
     vesktop = {
       enable = true;
