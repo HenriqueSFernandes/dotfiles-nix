@@ -13,8 +13,7 @@
   imports = [
     ./catppuccin.nix
     ./fish.nix
-    ./hyprland.nix
-    ./hyprpaper.nix
+    ./hypr
     ./yazi.nix
     ./zellij.nix
     ./nvim
@@ -41,6 +40,10 @@
   };
 
   programs.home-manager.enable = true;
+
+  services = {
+    swww.enable = true;
+  };
 
   programs = {
     rofi = {
@@ -172,5 +175,6 @@
     vesktop = {
       enable = true;
     };
+
   };
 }
