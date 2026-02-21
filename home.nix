@@ -29,7 +29,7 @@
 
   home.file = {
     ".agents/skills".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.agents/skills";
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.agents/skills";
   };
 
   home.sessionVariables = {

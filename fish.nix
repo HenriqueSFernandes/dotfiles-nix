@@ -9,12 +9,11 @@
       lg = "lazygit";
       ld = "lazydocker";
       uni = "zellij -l uni";
-      hpedit = "nvim ~/.config/hypr/hyprland.conf";
-      lock = "$HOME/.config/hypr/start-custom-lock.sh";
+      # lock = "$HOME/.config/hypr/start-custom-lock.sh";
       oldcat = "cat";
       cat = "bat";
-      nix-switch = "sudo nixos-rebuild switch --flake ~/.config/home-manager#ricky-laptop";
-      nix-conf = "cd ~/.config/home-manager && nvim";
+      nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles#ricky-laptop";
+      nix-conf = "cd ~/dotfiles && nvim";
       ls = "eza";
 
     };
@@ -43,7 +42,6 @@
 
       set -g fish_greeting ""
 
-      # Forçar o highlight verde para comandos (já que o catppuccin pode alterar isto)
       set -g fish_color_command green --bold
     '';
   };
