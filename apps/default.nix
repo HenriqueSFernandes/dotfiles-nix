@@ -8,4 +8,8 @@
     ./rofi.nix
   ];
 
+  programs = {
+    vesktop.enable = true;
+  };
+
 }

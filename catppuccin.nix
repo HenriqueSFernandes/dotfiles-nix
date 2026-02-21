@@ -40,5 +40,9 @@
     hyprlock.enable = true;
     hyprlock.accent = "blue";
     hyprlock.flavor = "mocha";
+
+    vesktop.enable = true;
+    vesktop.accent = "blue";
+    vesktop.flavor = "mocha";
   };
 }

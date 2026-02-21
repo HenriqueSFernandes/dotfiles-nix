@@ -1,10 +1,24 @@
 { config, lib, pkgs, ... }:
+let
+  hm-search = pkgs.writeShellScriptBin "hm-search" ''
+    if [ -z "$1" ]; then
+      echo "" 
+    else
+      ${pkgs.xdg-utils}/bin/xdg-open "https://home-manager-options.extranix.com/?query=$1&release=release-25.11"
+    fi
+  '';
+in
 {
+  home.packages = [ hm-search ];
   programs.rofi = {
     enable = true;
     extraConfig = {
       show-icons = true;
       terminal = "ghostty";
+
+      modes = [ "drun" "window" "hm:hm-search" ];
+      display-hm = "   HM Options ";
+
       drun-display-format = "{icon} {name}";
       display-drun = "   Apps ";
       display-window = "   Windows ";

@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports = [ inputs.zen-browser.homeModules.beta ];
 
@@ -24,26 +24,84 @@
         search = {
           force = true;
           default = "google";
-          engines = {
-            home-manager = {
-              name = "Home Manager Option Seach";
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-25.11";
-                  params = [
-                    {
-                      name = "query";
-                      value = "searchTerms";
-                    }
-                  ];
-                }
-              ];
-              definedAlias = [ "@hm" ];
+          engines =
+            let
+              nixSnowflakeIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            in
+            {
+              "Nix Packages" = {
+                urls = [
+                  {
+                    template = "https://search.nixos.org/packages";
+                    params = [
+                      { name = "type"; value = "packages"; }
+                      { name = "channel"; value = "25.11"; }
+                      { name = "query"; value = "{searchTerms}"; }
+                    ];
+                  }
+                ];
+                icon = nixSnowflakeIcon;
+                definedAliases = [ "p" ];
+              };
+              "Nix Options" = {
+                urls = [
+                  {
+                    template = "https://search.nixos.org/options";
+                    params = [
+                      { name = "channel"; value = "25.11"; }
+                      { name = "query"; value = "{searchTerms}"; }
+                    ];
+                  }
+                ];
+                icon = nixSnowflakeIcon;
+                definedAliases = [ "o" ];
+              };
+              "Home Manager Options" = {
+                urls = [
+                  {
+                    template = "https://home-manager-options.extranix.com/";
+                    params = [
+                      { name = "query"; value = "{searchTerms}"; }
+                      { name = "release"; value = "release-25.11"; }
+                    ];
+                  }
+                ];
+                icon = nixSnowflakeIcon;
+                definedAliases = [ "hm" ];
+              };
             };
-          };
         };
 
       };
     };
   };
+  xdg.mimeApps =
+    let
+      associations = builtins.listToAttrs (map
+        (name: {
+          inherit name;
+          value = "zen-beta.desktop";
+        }) [
+        "application/x-extension-shtml"
+        "application/x-extension-xhtml"
+        "application/x-extension-html"
+        "application/x-extension-xht"
+        "application/x-extension-htm"
+        "x-scheme-handler/unknown"
+        "x-scheme-handler/mailto"
+        "x-scheme-handler/chrome"
+        "x-scheme-handler/about"
+        "x-scheme-handler/https"
+        "x-scheme-handler/http"
+        "application/xhtml+xml"
+        "application/json"
+        "text/plain"
+        "text/html"
+      ]);
+    in
+    {
+      enable = true;
+      associations.added = associations;
+      defaultApplications = associations;
+    };
 }

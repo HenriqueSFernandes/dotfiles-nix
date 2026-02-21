@@ -25,6 +25,7 @@
     playerctl
     brightnessctl
     pamixer
+    whatsapp-electron
   ];
 
   home.file = {
@@ -88,10 +89,6 @@
     };
 
     opencode = {
-      enable = true;
-    };
-
-    vesktop = {
       enable = true;
     };
 
