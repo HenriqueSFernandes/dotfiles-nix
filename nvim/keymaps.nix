@@ -3,6 +3,42 @@
   programs.nixvim.keymaps = [
     {
       mode = "n";
+      key = "<C-h>";
+      action = "<C-w>h";
+      options.desc = "Move to left split";
+    }
+    {
+      mode = "n";
+      key = "<C-j>";
+      action = "<C-w>j";
+      options.desc = "Move to below split";
+    }
+    {
+      mode = "n";
+      key = "<C-k>";
+      action = "<C-w>k";
+      options.desc = "Move to above split";
+    }
+    {
+      mode = "n";
+      key = "<C-l>";
+      action = "<C-w>l";
+      options.desc = "Move to right split";
+    }
+    {
+      mode = "i";
+      key = "<C-h>";
+      action = "<C-w>";
+      options.desc = "Delete word backward";
+    }
+    {
+      mode = "c";
+      key = "<C-h>";
+      action = "<C-w>";
+      options.desc = "Delete word backward in command mode";
+    }
+    {
+      mode = "n";
       key = "<leader>e";
       action = ":Neotree filesystem reveal left toggle<CR>";
       options.desc = "Toggle file explorer";

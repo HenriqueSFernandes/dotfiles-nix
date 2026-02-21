@@ -6,6 +6,8 @@
   ];
 
   programs.nixvim.plugins = {
+    which-key.enable = true;
+		bufferline.enable = true;
     web-devicons.enable = true;
     neo-tree.enable = true;
     nvim-autopairs.enable = true;
