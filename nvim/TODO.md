@@ -1,1 +1,5 @@
 - git signs / blame
+- visual multi edit
+- spectre (find and replace)
+- surround
+- smart splits

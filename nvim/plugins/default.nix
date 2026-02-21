@@ -3,6 +3,7 @@
   imports = [
     ./barbecue.nix
     ./bufferline.nix
+    ./flash.nix
     ./lsp.nix
     ./telescope.nix
     ./trouble.nix
