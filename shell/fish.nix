@@ -15,21 +15,18 @@
       nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles#ricky-laptop";
       nix-conf = "cd ~/dotfiles && nvim";
       ls = "eza";
+      nix-clean = "sudo nix-collect-garbage -d";
 
     };
 
-		# functions = {
-		# nix-conf = "cd $HOME/.config/home-manager; nvim home.nix";
-		# };
-
     plugins = [
       {
-        name = "git-abbr"; 
+        name = "git-abbr";
         src = pkgs.fetchFromGitHub {
           owner = "lewisacidic";
           repo = "fish-git-abbr";
           rev = "master";
-					sha256 = "sha256-6z3Wr2t8CP85xVEp6UCYaM2KC9PX4MDyx19f/wjHkb0=";
+          sha256 = "sha256-6z3Wr2t8CP85xVEp6UCYaM2KC9PX4MDyx19f/wjHkb0=";
         };
       }
     ];
