@@ -18,10 +18,13 @@
     inputs.nixvim.homeModules.nixvim
   ];
 
-  home.packages = [
-    pkgs.manix
-    pkgs.gemini-cli
-    pkgs.thunar
+  home.packages = with pkgs; [
+    manix
+    gemini-cli
+    thunar
+    playerctl
+    brightnessctl
+    pamixer
   ];
 
   home.file = {

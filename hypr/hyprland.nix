@@ -166,14 +166,23 @@
         "$mod SHIFT CTRL, 1, movecurrentworkspacetomonitor, HDMI-A-1"
         "$mod SHIFT CTRL, 2, movecurrentworkspacetomonitor, eDP-1"
 
+        " , XF86AudioPlay, exec, playerctl play-pause"
+        " , XF86AudioNext, exec, playerctl next"
+        " , XF86AudioPrev, exec, playerctl previous"
 
+        " , XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+        " , XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
+        " , XF86AudioRaiseVolume, exec, pamixer -i 5"
+        " , XF86AudioLowerVolume, exec, pamixer -d 5"
+        " , XF86AudioMute, exec, pamixer -t"
 
       ];
       bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
+        "$mod, mouse:272,movewindow"
+        "$mod, mouse:273,resizewindow"
       ];
     };
   };
 }
+
