@@ -43,9 +43,6 @@
   };
 
   programs = {
-    rofi = {
-      enable = true;
-    };
 
     lazygit = {
       enable = true;

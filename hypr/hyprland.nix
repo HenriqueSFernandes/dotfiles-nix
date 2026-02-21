@@ -4,7 +4,7 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
-      "$menu" = "rofi -show drun"; # TODO
+      "$menu" = "rofi -show drun";
       "$fileManager" = "thunar";
 
       monitor = [
@@ -89,6 +89,7 @@
         "$mod, E, exec, $fileManager"
         "$mod, V, togglefloating"
         "$mod, R, exec, $menu"
+        "$mod, W, exec, rofi -show window"
         "$mod, O, pseudo"
         "$mod, n, togglesplit"
 

@@ -2,6 +2,8 @@
 {
   programs.nixvim.plugins = {
 
+    highlight-colors.enable = true;
+
     noice = {
       enable = true;
       settings = {
