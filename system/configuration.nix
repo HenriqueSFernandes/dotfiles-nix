@@ -59,6 +59,7 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  services.tailscale.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -66,6 +67,7 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # security.pam.services.hyprlock.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

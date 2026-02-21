@@ -38,5 +38,9 @@
     cursors.enable = true;
     cursors.accent = "dark";
     cursors.flavor = "mocha";
+
+    hyprlock.enable = true;
+    hyprlock.accent = "blue";
+    hyprlock.flavor = "mocha";
   };
 }

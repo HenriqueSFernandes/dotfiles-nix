@@ -14,10 +14,7 @@
     ./apps
     ./catppuccin.nix
     ./hypr
-    ./nvim
     ./shell
-    ./tui
-    inputs.zen-browser.homeModules.beta
     inputs.nixvim.homeModules.nixvim
   ];
 
@@ -59,12 +56,6 @@
     hyprpanel = {
       enable = true;
       systemd.enable = true;
-    };
-
-
-    zen-browser = {
-      enable = true;
-      suppressXdgMigrationWarning = true;
     };
 
     git = {

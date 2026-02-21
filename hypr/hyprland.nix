@@ -143,7 +143,7 @@
         #"$mod SHIFT, V, exec, /home/ricky/.config/rofi/bin/rofi-virtualbox"
         #"$mod, W, exec, /home/ricky/.config/rofi/bin/wallpaper-switcher"
         #"$mod, B, exec, /home/ricky/.config/hypr/waybar_toggle.sh"
-        #"$mod ALT, L, exec, hyprlock"
+        "$mod ALT, L, exec, hyprlock"
         #"$mt, exec, $HOME/.config/hypr/printscreen.sh --area"
         #"$mod, Print, exec, $HOME/.config/hypr/printscreen.sh --window"
         #"$mod SHIFT CTRL, Print, exec, $HOME/.config/hypr/printscreen.sh --screen"
