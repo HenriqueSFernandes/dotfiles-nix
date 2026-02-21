@@ -1,13 +1,17 @@
 { ... }:
 {
   imports = [
+    ./barbecue.nix
+    ./bufferline.nix
     ./lsp.nix
     ./telescope.nix
+    ./trouble.nix
+    ./ui.nix
   ];
 
   programs.nixvim.plugins = {
+    lazygit.enable = true;
     which-key.enable = true;
-		bufferline.enable = true;
     web-devicons.enable = true;
     neo-tree.enable = true;
     nvim-autopairs.enable = true;

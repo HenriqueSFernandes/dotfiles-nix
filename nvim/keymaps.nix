@@ -2,6 +2,30 @@
 {
   programs.nixvim.keymaps = [
     {
+      mode = [ "n" ];
+      key = "<leader>gg";
+      action = "<cmd>LazyGit<cr>";
+      options.desc = "Open LazyGit";
+    }
+    {
+      mode = [ "n" "v" ];
+      key = "<Tab>";
+      action = "<cmd>BufferLineCycleNext<cr>";
+      options.desc = "Next Buffer";
+    }
+    {
+      mode = [ "n" "v" ];
+      key = "<S-Tab>";
+      action = "<cmd>BufferLineCyclePrev<cr>";
+      options.desc = "Previous Buffer";
+    }
+    {
+      mode = [ "n" "v" ];
+      key = "<leader>w";
+      action = "<cmd>bd<cr>";
+      options.desc = "Close Buffer";
+    }
+    {
       mode = "n";
       key = "<C-h>";
       action = "<C-w>h";

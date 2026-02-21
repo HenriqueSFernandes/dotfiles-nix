@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 {
@@ -95,6 +94,7 @@
         shell-integration-features = "cursor";
         cursor-style = "bar";
         mouse-hide-while-typing = true;
+        keybind = "ctrl+backspace=text:\\x17";
       };
     };
 
@@ -167,5 +167,9 @@
     };
 
     ripgrep.enable = true;
+     
+    vesktop = {
+      enable = true;
+    };
   };
 }

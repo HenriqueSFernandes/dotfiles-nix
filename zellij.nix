@@ -8,6 +8,7 @@
       keybinds = {
         normal = {
           "unbind \"Ctrl p\"" = { };
+          "unbind \"Ctrl h\"" = { };
           "bind \"Ctrl a\"" = {
             SwitchToMode = "Pane";
           };

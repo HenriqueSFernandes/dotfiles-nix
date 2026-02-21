@@ -1,4 +1,9 @@
 [[mgr.prepend_keymap]]
+on   = "C-h"
+run  = "nop"
+desc = "Unbind Ctrl+H (conflicts with nvim)"
+
+[[mgr.prepend_keymap]]
 on  = "M"
 run = "plugin mount"
 
