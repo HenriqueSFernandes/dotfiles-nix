@@ -17,7 +17,7 @@
     ./catppuccin.nix
     ./zellij.nix
     ./hyprland.nix
-    ./nvim.nix
+    ./nvim
     inputs.zen-browser.homeModules.beta
     inputs.nixvim.homeModules.nixvim
   ];
