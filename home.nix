@@ -11,11 +11,12 @@
   home.stateVersion = "25.11";
 
   imports = [
-    ./fish.nix
-    ./yazi.nix
     ./catppuccin.nix
-    ./zellij.nix
+    ./fish.nix
     ./hyprland.nix
+    ./hyprpaper.nix
+    ./yazi.nix
+    ./zellij.nix
     ./nvim
     inputs.zen-browser.homeModules.beta
     inputs.nixvim.homeModules.nixvim
@@ -167,7 +168,7 @@
     };
 
     ripgrep.enable = true;
-     
+
     vesktop = {
       enable = true;
     };
