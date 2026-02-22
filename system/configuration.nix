@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 
 let
   elegantTheme = pkgs.stdenv.mkDerivation {
@@ -60,7 +60,7 @@ in
     };
   };
 
-  networking.hostName = "ricky-laptop";
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
