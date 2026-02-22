@@ -13,5 +13,6 @@
       enable = true;
       enableFishIntegration = true;
     };
+    lazydocker.enable = true;
   };
 }
