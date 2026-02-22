@@ -64,6 +64,8 @@ in
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
+  virtualisation.docker.enable = true;
+
   time.timeZone = "Europe/Lisbon";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -119,7 +121,7 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     description = "ricky";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   programs.firefox.enable = true;
