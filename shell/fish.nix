@@ -12,7 +12,9 @@
       # lock = "$HOME/.config/hypr/start-custom-lock.sh";
       oldcat = "cat";
       cat = "bat";
-      nix-switch = "sudo nixos-rebuild switch --flake ~/dotfiles#ricky-laptop";
+      nix-switch-laptop = "sudo nixos-rebuild switch --flake ~/dotfiles#ricky-laptop";
+      nix-switch-desktop = "sudo nixos-rebuild switch --flake ~/dotfiles#ricky-desktop";
+      nix-switch = "nix-switch-laptop";
       nix-conf = "cd ~/dotfiles && nvim";
       ls = "eza";
       nix-clean = "sudo nix-collect-garbage -d";
