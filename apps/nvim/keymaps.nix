@@ -3,6 +3,12 @@
   programs.nixvim.keymaps = [
     {
       mode = [ "n" ];
+      key = "<leader>gb";
+      action = "<cmd>Gitsigns toggle_current_line_blame<cr>";
+      options.desc = "Toggle Line Blame";
+    }
+    {
+      mode = [ "n" ];
       key = "<leader>gg";
       action = "<cmd>LazyGit<cr>";
       options.desc = "Open LazyGit";

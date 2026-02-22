@@ -8,10 +8,13 @@
     ./telescope.nix
     ./trouble.nix
     ./ui.nix
+    ./mini.nix
   ];
 
   programs.nixvim.plugins = {
+    gitsigns.enable = true;
     persistence.enable = true;
+    nvim-surround.enable = true;
     lazygit.enable = true;
     which-key.enable = true;
     web-devicons.enable = true;

@@ -30,11 +30,11 @@
       action = "<cmd>lua require('flash').jump()<cr>";
       options.desc = "Flash Jump";
     }
-    {
-      mode = [ "n" "x" "o" ];
-      key = "S";
-      action = "<cmd>lua require('flash').treesitter()<cr>";
-      options.desc = "Flash Treesitter";
-    }
+    # {
+    #   mode = [ "n" "x" "o" ];
+    #   key = "S";
+    #   action = "<cmd>lua require('flash').treesitter()<cr>";
+    #   options.desc = "Flash Treesitter";
+    # }
   ];
 }
