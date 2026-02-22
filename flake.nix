@@ -37,11 +37,12 @@
       };
 
       # Function to create a NixOS config for a given hostname
-      mkNixosConfig = { hostname, systemConfig }:
+      mkNixosConfig = { hostname, systemConfig, hardwareConfig }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs hostname; };
           modules = [
+            hardwareConfig
             systemConfig
 
             home-manager.nixosModules.home-manager
@@ -66,11 +67,13 @@
         "ricky-laptop" = mkNixosConfig {
           hostname = "ricky-laptop";
           systemConfig = ./system/configuration.nix;
+          hardwareConfig = ./system/hardware-laptop.nix;
         };
 
         "ricky-desktop" = mkNixosConfig {
           hostname = "ricky-desktop";
           systemConfig = ./system/configuration.nix;
+          hardwareConfig = ./system/hardware-desktop.nix;
         };
       };
     };
