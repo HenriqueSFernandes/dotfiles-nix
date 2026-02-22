@@ -25,10 +25,7 @@ let
   };
 in
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [ ];
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
