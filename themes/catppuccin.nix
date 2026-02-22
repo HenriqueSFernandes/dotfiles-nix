@@ -50,5 +50,9 @@
     lazygit.enable = true;
     lazygit.accent = "blue";
     lazygit.flavor = "mocha";
+
+    element-desktop.enable = true;
+    element-desktop.accent = "blue";
+    element-desktop.flavor = "mocha";
   };
 }

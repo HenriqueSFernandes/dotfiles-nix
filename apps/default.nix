@@ -5,12 +5,9 @@
     ./browsers
     ./nvim
     ./tui
+    ./social
     ./terminals
     ./rofi.nix
   ];
-
-  programs = {
-    vesktop.enable = true;
-  };
 
 }

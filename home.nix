@@ -31,7 +31,6 @@
       brightnessctl
       pamixer
       hyprpicker
-      whatsapp-electron
     ];
 
     sessionVariables = {
