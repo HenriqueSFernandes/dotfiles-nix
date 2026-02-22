@@ -11,6 +11,7 @@
     ];
 
     plugins = {
+      flutter-tools.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -24,7 +25,7 @@
           "gt" = "type_definition";
           "K" = "hover";
           "<leader>rn" = "rename";
-          "<leader>ca" = "code_action";
+          "<leader>v" = "code_action";
         };
       };
 
