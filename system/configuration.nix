@@ -1,5 +1,29 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
+let
+  elegantTheme = pkgs.stdenv.mkDerivation {
+    name = "elegant-grub2-forest-window-right-dark";
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "Elegant-grub2-themes";
+      rev = "92cdac334cf7bc5c1d68c2fbb266164653b4b502";
+      hash = "sha256-fbZLWHxnLBrqBrS2MnM2G08HgEM2dmZvitiCERie0Cc=";
+    };
+    installPhase = ''
+      mkdir -p $out
+      cp common/terminus-*.pf2 $out/
+      cp common/unifont-16.pf2 $out/
+      cp backgrounds/backgrounds-forest/background-forest-window-right-dark.jpg $out/background.jpg
+      cp config/theme-window-right-dark-1080p.txt $out/theme.txt
+      cp assets/assets-other/other-1080p/select_e-forest-dark.png $out/select_e.png
+      cp assets/assets-other/other-1080p/select_c-forest-dark.png $out/select_c.png
+      cp assets/assets-other/other-1080p/select_w-forest-dark.png $out/select_w.png
+      cp assets/assets-other/other-1080p/window-right-alt.png $out/info.png
+      cp assets/assets-other/other-1080p/Default.png $out/logo.png
+      cp -r assets/assets-icons-dark/icons-dark-1080p $out/icons
+    '';
+  };
+in
 {
   imports =
     [
@@ -14,6 +38,7 @@
     efiSupport = true;
     configurationLimit = 5;
     useOSProber = true;
+    theme = elegantTheme;
   };
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -69,6 +94,7 @@
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
+    autoNumlock = true;
   };
 
   programs.silentSDDM = {
@@ -115,6 +141,5 @@
     ntfs3g
   ];
   system.stateVersion = "25.11";
-
 }
 

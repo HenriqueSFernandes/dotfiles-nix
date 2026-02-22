@@ -36,7 +36,7 @@
       };
       input = {
         kb_layout = "us, us";
-        kb_variant = "intl, basic";
+        kb_variant = "basic, intl";
         kb_options = "caps:escape, grp:win_space_toggle";
         numlock_by_default = true;
         follow_mouse = 1;
