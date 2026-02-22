@@ -150,7 +150,7 @@
         #"$mod SHIFT CTRL, Print, exec, $HOME/.config/hypr/printscreen.sh --screen"
         #"$mod SHIFT, Print, exec, $HOME/.config/rofi/bin/screenshot "
         #"$mod SHIFT, Y, exec, /home/ricky/Desktop/startup.sh"
-        #"$mod SHIFT, C, exec, hyprpicker -a"
+        "$mod SHIFT, C, exec, hyprpicker -a"
 
         # Special Workspaces
         "$mod, S, togglespecialworkspace, magic"

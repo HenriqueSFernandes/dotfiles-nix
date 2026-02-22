@@ -30,6 +30,7 @@
       playerctl
       brightnessctl
       pamixer
+      hyprpicker
       whatsapp-electron
     ];
 

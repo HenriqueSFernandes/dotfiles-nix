@@ -5,6 +5,9 @@
     fish.enable = true;
     fish.flavor = "mocha";
 
+    btop.enable = true;
+    btop.flavor = "mocha";
+
     fzf.enable = true;
     fzf.accent = "blue";
     fzf.flavor = "mocha";
@@ -43,5 +46,9 @@
     vesktop.enable = true;
     vesktop.accent = "blue";
     vesktop.flavor = "mocha";
+
+    lazygit.enable = true;
+    lazygit.accent = "blue";
+    lazygit.flavor = "mocha";
   };
 }

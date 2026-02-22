@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
@@ -14,7 +14,7 @@
     enable = true;
     device = "nodev";
     efiSupport = true;
-    configurationLimit = 2;
+    configurationLimit = 5;
     useOSProber = true;
   };
 
@@ -58,7 +58,7 @@
     LC_NUMERIC = "pt_PT.UTF-8";
     LC_PAPER = "pt_PT.UTF-8";
     LC_TELEPHONE = "pt_PT.UTF-8";
-    LC_TIME = "pt_PT.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -71,8 +71,20 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = false;
   services.desktopManager.gnome.enable = true;
+
+  services.displayManager.sddm = {
+    enable = true;
+    package = pkgs.kdePackages.sddm;
+  };
+
+  programs.silentSDDM = {
+    enable = true;
+    theme = "catppuccin-mocha";
+  };
+
+
 
   services.tailscale.enable = true;
 
@@ -126,7 +138,9 @@
   # $ nix search wget
   fonts.fontconfig.enable = true;
   environment.systemPackages = with pkgs; [
-    kitty
+    kdePackages.qtdeclarative
+    kdePackages.qtsvg
+    kdePackages.qtmultimedia
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
@@ -159,3 +173,4 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
+

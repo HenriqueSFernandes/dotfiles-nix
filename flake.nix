@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
@@ -16,14 +20,14 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      catppuccin,
-      spicetify-nix,
-      zen-browser,
-      nixvim,
-      ...
+    { nixpkgs
+    , home-manager
+    , catppuccin
+    , spicetify-nix
+    , zen-browser
+    , nixvim
+    , silentSDDM
+    , ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -33,13 +37,14 @@
       };
     in
     {
-    nixosConfigurations."ricky-laptop" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."ricky-laptop" = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ./system/configuration.nix 
+          ./system/configuration.nix
 
           home-manager.nixosModules.home-manager
+          silentSDDM.nixosModules.default
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
