@@ -29,6 +29,7 @@ in
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "ip_tables" "iptable_nat" "iptable_filter" "xt_nat" ];
   boot.loader.grub = {
     enable = true;
     device = "nodev";

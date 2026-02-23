@@ -7,4 +7,5 @@
   ];
 
   services.hyprsunset.enable = true;
+  programs.hyprshot.enable = true;
 }
