@@ -3,9 +3,10 @@
   imports = [
     ./spotify.nix
     ./browsers
-    ./nvim
+    ./editors
     ./tui
     ./social
+    ./cli
     ./terminals
     ./rofi.nix
   ];

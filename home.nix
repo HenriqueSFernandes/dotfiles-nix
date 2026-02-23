@@ -25,13 +25,9 @@
     };
 
     packages = with pkgs; [
-      manix
-      gemini-cli
-      thunar
-      playerctl
       brightnessctl
-      pamixer
       hyprpicker
+      thunar
     ];
 
     sessionVariables = {
