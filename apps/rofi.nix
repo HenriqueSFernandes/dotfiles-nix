@@ -8,6 +8,19 @@ let
     fi
   '';
 
+  screenshotmenu = pkgs.writeShellScriptBin "screenshotmenu" ''
+    chosen=$(printf "  Area Capture\n  Window Capture\n󰍹  Monitor Capture" \
+      | ${pkgs.rofi}/bin/rofi \
+        -dmenu \
+        -p "  Screenshot " \
+        -theme-str 'listview { columns: 1; lines: 3; }')
+    case "$chosen" in
+      "  Area Capture")     hyprshot -m region ;;
+      "  Window Capture")   hyprshot -m window ;;
+      "󰍹  Monitor Capture") hyprshot -m output ;;
+    esac
+  '';
+
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
     chosen=$(printf "󰌾  Lock\n󰒲  Hibernate\n󰍃  Log Off\n󰑓  Reboot\n󰐥  Power Off" \
       | ${pkgs.rofi}/bin/rofi \
@@ -24,7 +37,7 @@ let
   '';
 in
 {
-  home.packages = [ hm-search powermenu ];
+  home.packages = [ hm-search powermenu screenshotmenu ];
   programs.rofi = {
     enable = true;
     extraConfig = {

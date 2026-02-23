@@ -159,6 +159,7 @@
         #"$mod, B, exec, /home/ricky/.config/hypr/waybar_toggle.sh"
         "$mod ALT, L, exec, hyprlock"
         #"$mt, exec, $HOME/.config/hypr/printscreen.sh --area"
+        "$mod, Print, exec, screenshotmenu"
         " , Print, exec, hyprshot -m region"
         #"$mod SHIFT CTRL, Print, exec, $HOME/.config/hypr/printscreen.sh --screen"
         #"$mod SHIFT, Print, exec, $HOME/.config/rofi/bin/screenshot "
