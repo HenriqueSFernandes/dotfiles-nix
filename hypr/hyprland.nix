@@ -8,7 +8,7 @@
       "$menu" = "rofi -show drun";
       "$fileManager" = "thunar";
 
-      monitor = 
+      monitor =
         if hostname == "ricky-laptop" then [
           "eDP-1, 1920x1080@120, 1920x0, 1"
           "HDMI-A-1, 1920x1080@240, 0x0, 1"
@@ -42,6 +42,10 @@
           render_power = 3;
           color = "rgba(1a1a1aee)";
         };
+      };
+      cursor = {
+        inactive_timeout = 5;
+        no_hardware_cursors = 1;
       };
       input = {
         kb_layout = "us, us";
