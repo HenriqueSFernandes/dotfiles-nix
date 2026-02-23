@@ -7,9 +7,24 @@ let
       ${pkgs.xdg-utils}/bin/xdg-open "https://home-manager-options.extranix.com/?query=$1&release=release-25.11"
     fi
   '';
+
+  powermenu = pkgs.writeShellScriptBin "powermenu" ''
+    chosen=$(printf "󰌾  Lock\n󰒲  Hibernate\n󰍃  Log Off\n󰑓  Reboot\n󰐥  Power Off" \
+      | ${pkgs.rofi}/bin/rofi \
+        -dmenu \
+        -p "  Power " \
+        -theme-str 'listview { columns: 1; lines: 5; }')
+    case "$chosen" in
+      "󰌾  Lock")      hyprlock ;;
+      "󰒲  Hibernate") systemctl hibernate ;;
+      "󰍃  Log Off")   loginctl terminate-user "$USER" ;;
+      "󰑓  Reboot")    systemctl reboot ;;
+      "󰐥  Power Off") systemctl poweroff ;;
+    esac
+  '';
 in
 {
-  home.packages = [ hm-search ];
+  home.packages = [ hm-search powermenu ];
   programs.rofi = {
     enable = true;
     extraConfig = {

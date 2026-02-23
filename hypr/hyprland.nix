@@ -152,7 +152,7 @@
         # Extra binds
         "$mod ALT, K, exec, shutdown now"
         "$mod, F, fullscreen, 1"
-        #"$mod, P, exec, /home/ricky/.config/rofi/bin/powermenu"
+        "$mod, P, exec, powermenu"
         #"$mod SHIFT, E, exec, /home/ricky/.config/rofi/bin/emoji"
         #"$mod SHIFT, V, exec, /home/ricky/.config/rofi/bin/rofi-virtualbox"
         #"$mod, W, exec, /home/ricky/.config/rofi/bin/wallpaper-switcher"
