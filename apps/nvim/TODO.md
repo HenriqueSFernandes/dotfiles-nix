@@ -1,3 +1,2 @@
 - visual multi edit
-- spectre (find and replace)
 - smart splits

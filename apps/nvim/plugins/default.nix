@@ -7,14 +7,15 @@
     ./flash.nix
     ./lsp.nix
     ./mini.nix
+    ./spectre.nix
     ./telescope.nix
     ./trouble.nix
-    ./which-key.nix
     ./ui.nix
   ];
 
   programs.nixvim.plugins = {
     gitsigns.enable = true;
+    which-key.enable = true;
     auto-session.enable = true;
     nvim-surround.enable = true;
     lazygit.enable = true;
