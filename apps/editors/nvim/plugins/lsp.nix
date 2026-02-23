@@ -17,6 +17,8 @@
         servers = {
           nil_ls.enable = true;
           lua_ls.enable = true;
+          dockerls.enable = true;
+          docker_compose_language_service.enable = true;
         };
         keymaps.lspBuf = {
           "gd" = "definition";
