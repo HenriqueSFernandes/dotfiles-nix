@@ -2,6 +2,42 @@
 {
   programs.nixvim.keymaps = [
     {
+      mode = [ "i" "n" ];
+      key = "<S-CR>";
+      action.__raw = ''
+        function()
+          local line = vim.api.nvim_get_current_line()
+          if not line:match(";%s*$") then
+            vim.api.nvim_set_current_line(line .. ";")
+          end
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<End><CR>", true, true, true), "n", true)
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Append semicolon and new line";
+      };
+    }
+
+    {
+      mode = [ "i" "n" ];
+      key = "<A-CR>";
+      action.__raw = ''
+        function()
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local line = vim.api.nvim_get_current_line()
+          if not line:match(";%s*$") then
+            vim.api.nvim_set_current_line(line .. ";")
+          end
+          vim.api.nvim_win_set_cursor(0, cursor)
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Append semicolon and stay";
+      };
+    }
+    {
       mode = [ "n" ];
       key = "<leader>gb";
       action = "<cmd>Gitsigns toggle_current_line_blame<cr>";

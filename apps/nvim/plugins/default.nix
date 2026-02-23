@@ -13,7 +13,7 @@
 
   programs.nixvim.plugins = {
     gitsigns.enable = true;
-    persistence.enable = true;
+    auto-session.enable = true;
     nvim-surround.enable = true;
     lazygit.enable = true;
     which-key.enable = true;
