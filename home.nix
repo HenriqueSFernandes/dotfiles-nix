@@ -25,8 +25,10 @@
     };
 
     packages = with pkgs; [
+      wrangler
       brightnessctl
       hyprpicker
+      cloudflared
       thunar
     ];
 

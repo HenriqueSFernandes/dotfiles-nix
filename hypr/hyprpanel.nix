@@ -14,6 +14,7 @@
       theme.bar.floating = false;
       theme.bar.buttons.enableBorders = false;
       theme.bar.enableShadow = false;
+      theme.bar.outer_spacing = "0.3em";
       theme.font.weight = 600;
       bar.launcher.icon = "󱄅";
       theme.bar.menus.opacity = 100;
@@ -56,7 +57,7 @@
       bar.workspaces.show_icons = false;
       bar.workspaces.workspaceMask = false;
       bar.workspaces.numbered_active_indicator = "highlight";
-      bar.workspaces.ignored = -97;
+      bar.workspaces.ignored = "-9.";
       bar.media.show_active_only = true;
       menus.media.displayTime = false;
       theme.bar.buttons.modules.submap.enableBorder = false;
