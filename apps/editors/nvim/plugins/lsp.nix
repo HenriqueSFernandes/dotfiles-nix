@@ -8,9 +8,11 @@
       prettierd
       nixpkgs-fmt
       codespell
+      clang-tools
     ];
 
     plugins = {
+      clangd-extensions.enable = true;
       flutter-tools.enable = true;
       lsp = {
         enable = true;
@@ -19,6 +21,7 @@
           lua_ls.enable = true;
           dockerls.enable = true;
           docker_compose_language_service.enable = true;
+          clangd.enable = true;
         };
         keymaps.lspBuf = {
           "gd" = "definition";
@@ -43,6 +46,8 @@
             "prettierd"
           ];
           nix = [ "nixpkgs_fmt" ];
+          c = [ "clang-format" ];
+          cpp = [ "clang-format" ];
           "*" = [ "codespell" ];
           "_" = [ "trim_whitespace" ];
         };

@@ -1,4 +1,4 @@
-{ pkgs, hostname, ... }:
+{ pkgs, hostname, config, ... }:
 
 let
   elegantTheme = pkgs.stdenv.mkDerivation {
@@ -26,6 +26,31 @@ let
 in
 {
   imports = [ ];
+
+  sops = {
+    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+
+    age.keyFile = "/home/ricky/.config/sops/age/keys.txt";
+
+    secrets = {
+      "cloudflare-account-id" = {
+        owner = "ricky";
+      };
+      "cloudflare-gateway-id" = {
+        owner = "ricky";
+      };
+    };
+  };
+
+  programs.fish.interactiveShellInit = ''
+    if test -f ${config.sops.secrets.cloudflare-account-id.path}
+      set -gx CLOUDFLARE_ACCOUNT_ID (cat ${config.sops.secrets.cloudflare-account-id.path})
+    end
+    if test -f ${config.sops.secrets.cloudflare-gateway-id.path}
+      set -gx CLOUDFLARE_GATEWAY_ID (cat ${config.sops.secrets.cloudflare-gateway-id.path})
+    end
+  '';
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,6 +88,9 @@ in
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "ricky" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   time.timeZone = "Europe/Lisbon";
 
@@ -119,7 +147,7 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     description = "ricky";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
   };
 
   programs.firefox.enable = true;

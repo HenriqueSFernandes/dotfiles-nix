@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +31,7 @@
     , zen-browser
     , nixvim
     , silentSDDM
+    , sops-nix
     , ...
     }@inputs:
     let
@@ -47,6 +52,7 @@
 
             home-manager.nixosModules.home-manager
             silentSDDM.nixosModules.default
+            sops-nix.nixosModules.sops
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
