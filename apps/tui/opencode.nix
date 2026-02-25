@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.opencode = {
     enable = true;
+    package = pkgs.opencode;
     settings = {
       provider = {
         anthropic = {
@@ -11,8 +12,6 @@
           };
         };
       };
-      model = "copilot:claude-4.6-sonnet";
-      small_model = "copilot:claude-4-5-haiku";
     };
   };
 }
