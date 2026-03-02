@@ -9,6 +9,7 @@
       nixpkgs-fmt
       codespell
       clang-tools
+      biome
     ];
 
     plugins = {
@@ -22,6 +23,8 @@
           dockerls.enable = true;
           docker_compose_language_service.enable = true;
           clangd.enable = true;
+          ts_ls.enable = true;
+          biome.enable = true;
         };
         keymaps.lspBuf = {
           "gd" = "definition";
@@ -43,7 +46,16 @@
             "black"
           ];
           javascript = [
-            "prettierd"
+            "biome"
+          ];
+          typescript = [
+            "biome"
+          ];
+          javascriptreact = [
+            "biome"
+          ];
+          typescriptreact = [
+            "biome"
           ];
           nix = [ "nixpkgs_fmt" ];
           c = [ "clang-format" ];
