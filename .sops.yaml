@@ -1,7 +1,9 @@
 keys:
   - &pc-laptop age1ha8mullfp8pvpn3veetuj7yj8kwwqy9w2umrep9658j2h2rfqu4scqw7rc
+  - &pc-desktop age1ezjkj294zf6f4gswvtmtazeuxr95k0syncmswp0rrhmm6r4ds4ks7qufy3
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env)$
     key_groups:
       - age:
         - *pc-laptop
+        - *pc-desktop
