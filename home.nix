@@ -30,6 +30,8 @@
       hyprpicker
       cloudflared
       thunar
+      zulip
+      deno
     ];
 
     sessionVariables = {

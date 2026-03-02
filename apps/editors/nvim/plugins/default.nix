@@ -15,6 +15,8 @@
 
   programs.nixvim.plugins = {
     gitsigns.enable = true;
+    peek.enable = true;
+    peek.createUserCommands = true;
     which-key.enable = true;
     auto-session.enable = true;
     nvim-surround.enable = true;
@@ -22,6 +24,7 @@
     web-devicons.enable = true;
     neo-tree.enable = true;
     nvim-autopairs.enable = true;
+    ts-autotag.enable = true;
     cursorline = {
       enable = true;
       settings.cursorline.timeout = 0;

@@ -43,6 +43,8 @@ in
     };
   };
 
+  programs.nix-ld.enable = true;
+
   programs.fish.interactiveShellInit = ''
     if test -f ${config.sops.secrets.cloudflare-account-id.path}
       set -gx CLOUDFLARE_ACCOUNT_ID (cat ${config.sops.secrets.cloudflare-account-id.path})
@@ -52,18 +54,28 @@ in
     end
   '';
 
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "ip_tables" "iptable_nat" "iptable_filter" "xt_nat" ];
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    configurationLimit = 5;
-    useOSProber = true;
-    theme = elegantTheme;
+  boot = {
+    loader = {
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        configurationLimit = 5;
+        useOSProber = true;
+        theme = elegantTheme;
+      };
+    };
+    supportedFilesystems = [ "ntfs" ];
+    kernelModules = [ "nf_tables" "nf_nat" "nf_nat_ipv4" "iptable_nat" "iptable_filter" ];
+    kernel.sysctl = {
+      "net.bridge.bridge-nf-call-iptables" = 0;
+      "net.bridge.bridge-nf-call-ip6tables" = 0;
+      "net.bridge.bridge-nf-call-arptables" = 0;
+    };
+
   };
-  boot.supportedFilesystems = [ "ntfs" ];
 
   services.udisks2.enable = true;
 
@@ -84,7 +96,12 @@ in
   };
 
   networking.hostName = hostname;
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
+  };
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
   virtualisation.docker.enable = true;

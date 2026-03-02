@@ -2,6 +2,12 @@
 {
   programs.nixvim.keymaps = [
     {
+      mode = [ "n" ];
+      key = "<leader>m";
+      action = ":PeekOpen<cr>";
+      options.desc = "Open markdown preview";
+    }
+    {
       mode = [ "i" "n" ];
       key = "<S-CR>";
       action.__raw = ''
