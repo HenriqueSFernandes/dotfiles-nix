@@ -4,7 +4,6 @@
 
   programs.zen-browser = {
     enable = true;
-    suppressXdgMigrationWarning = true;
     profiles.${config.home.username} = {
       id = 0;
       isDefault = true;

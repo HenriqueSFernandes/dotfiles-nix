@@ -97,6 +97,7 @@
       " , XF86AudioRaiseVolume, exec, pamixer -i 5"
       " , XF86AudioLowerVolume, exec, pamixer -d 5"
       " , XF86AudioMute, exec, pamixer -t"
+      " , XF86PowerOff, exec, powermenu"
 
     ];
 

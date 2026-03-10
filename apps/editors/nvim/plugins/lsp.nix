@@ -10,6 +10,7 @@
       codespell
       clang-tools
       biome
+      vscode-langservers-extracted
     ];
 
     plugins = {
@@ -25,6 +26,10 @@
           clangd.enable = true;
           ts_ls.enable = true;
           biome.enable = true;
+          jsonls = {
+            enable = true;
+            filetypes = [ "json" "jsonc" ];
+          };
         };
         keymaps.lspBuf = {
           "gd" = "definition";
@@ -45,21 +50,15 @@
             "isort"
             "black"
           ];
-          javascript = [
-            "biome"
-          ];
-          typescript = [
-            "biome"
-          ];
-          javascriptreact = [
-            "biome"
-          ];
-          typescriptreact = [
-            "biome"
-          ];
+          javascript = [ "biome" ];
+          typescript = [ "biome" ];
+          javascriptreact = [ "biome" ];
+          typescriptreact = [ "biome" ];
           nix = [ "nixpkgs_fmt" ];
           c = [ "clang-format" ];
           cpp = [ "clang-format" ];
+          json = [ "biome" ];
+          jsonc = [ "biome" ];
           "*" = [ "codespell" ];
           "_" = [ "trim_whitespace" ];
         };

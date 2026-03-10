@@ -79,6 +79,12 @@ in
 
   services.udisks2.enable = true;
 
+  services.logind.settings = {
+    Login = {
+      HandlePowerKey = "ignore";
+    };
+  };
+
   services.gvfs.enable = true;
 
   hardware.bluetooth = {
