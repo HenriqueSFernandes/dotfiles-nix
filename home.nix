@@ -36,6 +36,8 @@
       hunspell
       hunspellDicts.pt_PT
       hunspellDicts.en_US
+      deploy-rs
+      tldr
     ];
 
     sessionVariables = {

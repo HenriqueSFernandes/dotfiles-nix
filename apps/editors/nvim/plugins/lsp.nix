@@ -54,6 +54,7 @@
           typescript = [ "biome" ];
           javascriptreact = [ "biome" ];
           typescriptreact = [ "biome" ];
+          markdown = [ "prettierd" ];
           nix = [ "nixpkgs_fmt" ];
           c = [ "clang-format" ];
           cpp = [ "clang-format" ];
