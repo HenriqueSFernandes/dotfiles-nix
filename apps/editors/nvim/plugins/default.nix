@@ -17,6 +17,7 @@
     gitsigns.enable = true;
     peek.enable = true;
     peek.createUserCommands = true;
+    peek.settings.app = "browser";
     which-key.enable = true;
     auto-session.enable = true;
     nvim-surround.enable = true;
