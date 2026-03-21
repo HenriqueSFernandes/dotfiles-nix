@@ -38,9 +38,9 @@
           container = containers."NIAEFEUP".id;
           theme.colors = [
             {
-              red = 179;
-              green = 54;
-              blue = 54;
+              red = 243;
+              green = 139;
+              blue = 168;
             }
           ];
         };
