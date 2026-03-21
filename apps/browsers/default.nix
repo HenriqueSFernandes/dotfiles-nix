@@ -1,4 +1,4 @@
 { ... }:
 {
-  imports = [ ./zen.nix ];
+  imports = [ ./zen-browser ];
 }

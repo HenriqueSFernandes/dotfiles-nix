@@ -87,6 +87,11 @@ in
 
   services.gvfs.enable = true;
 
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
