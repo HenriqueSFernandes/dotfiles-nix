@@ -9,6 +9,7 @@
   imports = [
     ./apps
     ./hypr
+    ./packages.nix
     ./shell
     ./themes
   ];
@@ -23,22 +24,6 @@
       ".agents/skills".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.agents/skills";
     };
-
-    packages = with pkgs; [
-      wrangler
-      brightnessctl
-      hyprpicker
-      cloudflared
-      thunar
-      zulip
-      deno
-      libreoffice-qt
-      hunspell
-      hunspellDicts.pt_PT
-      hunspellDicts.en_US
-      deploy-rs
-      tldr
-    ];
 
     sessionVariables = {
       DIRENV_LOG_FORMAT = "";

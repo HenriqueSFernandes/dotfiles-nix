@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
+  home.file = {
+    ".agents/skills".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.agents/skills";
+  };
+
   programs.opencode = {
     enable = true;
     package = pkgs.opencode;
