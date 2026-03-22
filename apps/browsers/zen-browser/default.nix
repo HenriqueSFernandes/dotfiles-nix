@@ -6,6 +6,7 @@
     ./search-alias.nix
     ./xdg-mime.nix
     ./spaces.nix
+    ./pins.nix
   ];
 
   programs.zen-browser = {
