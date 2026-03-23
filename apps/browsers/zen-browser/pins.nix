@@ -84,6 +84,34 @@
         };
         # NIAEFEUP
         # ACM
+        "Vercel" = {
+          id = "9d8a8f91-7e29-4688-ae2e-da4e49d4d000";
+          container = containers.ACM.id;
+          url = "https://vercel.com/acm-feups-projects";
+          isEssential = true;
+          position = 101;
+        };
+        "Cloudflare" = {
+          id = "9d8a8f91-7e29-4688-ae2e-da4e49d4d001";
+          container = containers.ACM.id;
+          url = "https://dash.cloudflare.com";
+          isEssential = true;
+          position = 102;
+        };
+        "GitHub" = {
+          id = "9d8a8f91-7e29-4688-ae2e-da4e49d4d002";
+          container = containers.ACM.id;
+          url = "https://github.com/orgs/acmfeup/repositories?type=source";
+          isEssential = true;
+          position = 103;
+        };
+        "Namecheap" = {
+          id = "9d8a8f91-7e29-4688-ae2e-da4e49d4d003";
+          container = containers.ACM.id;
+          url = "https://ap.www.namecheap.com/";
+          isEssential = true;
+          position = 104;
+        };
       };
 
   };
