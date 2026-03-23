@@ -8,6 +8,7 @@
       ze = "zellij";
       lg = "lazygit";
       ld = "lazydocker";
+      nv = "nvim";
       uni = "zellij -l uni";
       # lock = "$HOME/.config/hypr/start-custom-lock.sh";
       oldcat = "cat";

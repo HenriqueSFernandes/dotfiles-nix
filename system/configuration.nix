@@ -183,8 +183,6 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
   };
 
-  programs.firefox.enable = true;
-
   programs.hyprland.enable = true;
 
   programs.fish.enable = true;
