@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   gtk = {
     enable = true;
@@ -18,5 +18,7 @@
         accent = "blue";
       };
     };
+
+    gt4.theme = config.gtk.theme;
   };
 }
