@@ -19,6 +19,6 @@
       };
     };
 
-    gt4.theme = config.gtk.theme;
+    gtk4.theme = config.gtk.theme;
   };
 }
