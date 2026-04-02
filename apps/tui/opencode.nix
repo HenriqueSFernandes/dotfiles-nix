@@ -38,6 +38,11 @@
           model = "opencode-go/minimax-m2.5";
           description = "Fast & cheap task (saves your 'premium' logic for later)";
         };
+        issue = {
+          template = "Run `gh issue view $ARGUMENTS` to view the GitHub issue details, then create a plan to implement it using Kimi's large context.";
+          model = "opencode-go/kimi-k2.5";
+          description = "View and plan a GitHub issue by number (e.g. /issue 123)";
+        };
       };
 
       provider = {

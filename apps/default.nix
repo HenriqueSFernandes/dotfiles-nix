@@ -1,14 +1,15 @@
 { ... }:
 {
   imports = [
-    ./spotify.nix
     ./browsers
-    ./editors
-    ./tui
-    ./social
     ./cli
-    ./terminals
+    ./editors
+    ./misc
     ./rofi.nix
+    ./social
+    ./spotify.nix
+    ./terminals
+    ./tui
   ];
 
 }
