@@ -45,6 +45,12 @@
     }
     {
       mode = [ "n" ];
+      key = "<leader>o";
+      action = "<cmd>AerialToggle right<cr>";
+      options.desc = "Toggle Outline";
+    }
+    {
+      mode = [ "n" ];
       key = "<leader>gb";
       action = "<cmd>Gitsigns toggle_current_line_blame<cr>";
       options.desc = "Toggle Line Blame";

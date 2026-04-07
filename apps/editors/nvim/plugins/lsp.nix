@@ -2,6 +2,10 @@
 {
   programs.nixvim = {
     extraPackages = with pkgs; [
+      gopls
+      gofumpt
+      go-tools
+      gotools
       stylua
       black
       isort
@@ -10,6 +14,7 @@
       codespell
       clang-tools
       biome
+      rustfmt
       vscode-langservers-extracted
     ];
 
@@ -29,6 +34,21 @@
           jsonls = {
             enable = true;
             filetypes = [ "json" "jsonc" ];
+          };
+          rust_analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
+          gopls = {
+            enable = true;
+            settings = {
+              analyses = {
+                unusedparams = true;
+              };
+              staticcheck = true;
+              gofumpt = true;
+            };
           };
         };
         keymaps.lspBuf = {
@@ -53,7 +73,9 @@
           javascript = [ "biome" ];
           typescript = [ "biome" ];
           javascriptreact = [ "biome" ];
+          go = [ "goimports" "gofumpt" ];
           typescriptreact = [ "biome" ];
+          rust = [ "rustfmt" ];
           markdown = [ "prettierd" ];
           nix = [ "nixpkgs_fmt" ];
           c = [ "clang-format" ];

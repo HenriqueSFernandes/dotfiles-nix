@@ -15,6 +15,7 @@
 
   programs.nixvim.plugins = {
     gitsigns.enable = true;
+    aerial.enable = true;
     peek.enable = true;
     peek.createUserCommands = true;
     peek.settings.app = "browser";
