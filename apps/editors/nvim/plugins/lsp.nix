@@ -16,6 +16,7 @@
       biome
       rustfmt
       vscode-langservers-extracted
+      tailwindcss-language-server
     ];
 
     plugins = {
@@ -25,12 +26,14 @@
         enable = true;
         servers = {
           nil_ls.enable = true;
+          tailwindcss.enable = true;
           lua_ls.enable = true;
           dockerls.enable = true;
           docker_compose_language_service.enable = true;
           clangd.enable = true;
           ts_ls.enable = true;
           biome.enable = true;
+          basedpyright.enable = true;
           jsonls = {
             enable = true;
             filetypes = [ "json" "jsonc" ];
@@ -66,10 +69,7 @@
         enable = true;
         settings.formatters_by_ft = {
           lua = [ "stylua" ];
-          python = [
-            "isort"
-            "black"
-          ];
+          python = [ "ruff_format" "ruff_organize_imports" ];
           javascript = [ "biome" ];
           typescript = [ "biome" ];
           javascriptreact = [ "biome" ];
@@ -104,6 +104,10 @@
             "<S-Tab>" = "cmp.mapping.select_prev_item()";
           };
         };
+      };
+      lspkind = {
+        enable = true;
+        cmp.enable = true;
       };
     };
   };

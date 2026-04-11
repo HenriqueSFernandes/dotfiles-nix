@@ -6,6 +6,7 @@
     pamixer
     playerctl
     networkmanagerapplet
+    nodejs_24
   ];
 
   programs = {

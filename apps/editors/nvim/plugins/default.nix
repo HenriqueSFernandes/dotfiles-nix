@@ -16,9 +16,7 @@
   programs.nixvim.plugins = {
     gitsigns.enable = true;
     aerial.enable = true;
-    peek.enable = true;
-    peek.createUserCommands = true;
-    peek.settings.app = "browser";
+    markdown-preview.enable = true;
     which-key.enable = true;
     auto-session.enable = true;
     nvim-surround.enable = true;
