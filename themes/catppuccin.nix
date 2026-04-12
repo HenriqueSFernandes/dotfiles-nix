@@ -35,6 +35,9 @@
     spotify-player.enable = true;
     spotify-player.flavor = "mocha";
 
+    k9s.enable = true;
+    k9s.flavor = "mocha";
+
     cursors.enable = true;
     cursors.accent = "dark";
     cursors.flavor = "mocha";

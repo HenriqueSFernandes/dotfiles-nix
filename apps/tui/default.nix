@@ -8,6 +8,7 @@
 
   programs = {
     bluetuith.enable = true;
+    k9s.enable = true;
     btop.enable = true;
     lazygit = {
       enable = true;

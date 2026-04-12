@@ -17,6 +17,7 @@
       rustfmt
       vscode-langservers-extracted
       tailwindcss-language-server
+      yaml-language-server
     ];
 
     plugins = {
@@ -30,6 +31,7 @@
           lua_ls.enable = true;
           dockerls.enable = true;
           docker_compose_language_service.enable = true;
+          nixd.enable = true;
           clangd.enable = true;
           ts_ls.enable = true;
           biome.enable = true;
@@ -52,6 +54,22 @@
               staticcheck = true;
               gofumpt = true;
             };
+          };
+          yamlls = {
+            enable = true;
+            settings = {
+              yaml = {
+                schemaStore = {
+                  enable = true;
+                  url = "https://www.schemastore.org/api/json/catalog.json";
+                };
+                validate = true;
+                completion = true;
+                hover = true;
+              };
+
+            };
+
           };
         };
         keymaps.lspBuf = {
@@ -87,27 +105,40 @@
         };
       };
 
-      cmp = {
+      blink-cmp = {
         enable = true;
         settings = {
-          autoEnableSources = true;
-          sources = [
-            { name = "nvim_lsp"; }
-            { name = "path"; }
-            { name = "buffer"; }
-            { name = "luasnip"; }
-          ];
-          mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = "cmp.mapping.select_next_item()";
-            "<S-Tab>" = "cmp.mapping.select_prev_item()";
+          sources.default = [ "lsp" "path" "snippets" "buffer" ];
+
+          keymap = {
+            preset = "none";
+            "<C-space>" = [ "show" "fallback" ];
+            "<CR>" = [ "accept" "fallback" ];
+
+            "<Tab>" = [ "select_next" "fallback" ];
+            "<S-Tab>" = [ "select_prev" "fallback" ];
+            "<Down>" = [ "select_next" "fallback" ];
+            "<Up>" = [ "select_prev" "fallback" ];
+
+            "<C-k>" = [ "show_documentation" "hide_documentation" "fallback" ];
+            "<C-b>" = [ "scroll_documentation_up" "fallback" ];
+            "<C-f>" = [ "scroll_documentation_down" "fallback" ];
+          };
+
+          appearance = {
+            use_nvim_cmp_as_default = true;
+            nerd_font_variant = "mono";
+          };
+
+          completion = {
+            menu.draw.columns = [
+              [ "kind_icon" ]
+              [ "label" "label_description" ]
+            ];
+            documentation.auto_show = false;
+            ghost_text.enabled = true;
           };
         };
-      };
-      lspkind = {
-        enable = true;
-        cmp.enable = true;
       };
     };
   };
