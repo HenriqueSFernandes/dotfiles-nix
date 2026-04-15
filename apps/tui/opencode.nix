@@ -4,12 +4,24 @@
     ".agents/skills".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.agents/skills";
   };
 
+  home.packages = with pkgs; [
+    poppler-utils
+  ];
+
   programs.opencode = {
     enable = true;
     package = pkgs.opencode;
     settings = {
       "$schema" = "https://opencode.ai/config.json";
       model = "opencode-go/minimax-m2.7";
+      mcp = {
+        cloudflare-radar = {
+          type = "remote";
+          url = "https://radar.mcp.cloudflare.com/mcp";
+          enabled = false;
+          timeout = 15000;
+        };
+      };
 
       agent = {
         build = {

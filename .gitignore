@@ -1,2 +1,4 @@
 result
 result-*
+**/__pycache__/
+.agents/skills/pptx/scripts/office/validators/__init__.py
