@@ -40,6 +40,9 @@ in
       "cloudflare-gateway-id" = {
         owner = "ricky";
       };
+      "figma-api-key" = {
+        owner = "ricky";
+      };
     };
   };
 
@@ -51,6 +54,9 @@ in
     end
     if test -f ${config.sops.secrets.cloudflare-gateway-id.path}
       set -gx CLOUDFLARE_GATEWAY_ID (cat ${config.sops.secrets.cloudflare-gateway-id.path})
+    end
+    if test -f ${config.sops.secrets.figma-api-key.path}
+      set -gx FIGMA_API_KEY (cat ${config.sops.secrets.figma-api-key.path})
     end
   '';
 

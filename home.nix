@@ -38,6 +38,6 @@
   programs.home-manager.enable = true;
 
   services = {
-    swww.enable = true;
+    awww.enable = true;
   };
 }

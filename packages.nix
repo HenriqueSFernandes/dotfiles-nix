@@ -15,5 +15,6 @@
     tldr
     wrangler
     zulip
+    sops
   ];
 }

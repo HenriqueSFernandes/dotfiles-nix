@@ -15,12 +15,23 @@
       "$schema" = "https://opencode.ai/config.json";
       model = "opencode-go/minimax-m2.7";
       mcp = {
+        figma = {
+          type = "local";
+          command = [ "npx" "-y" "figma-developer-mcp" "--stdio" ];
+          enabled = false;
+          timeout = 15000;
+        };
         cloudflare-radar = {
           type = "remote";
           url = "https://radar.mcp.cloudflare.com/mcp";
           enabled = false;
           timeout = 15000;
         };
+        puppeteer = {
+          type = "local";
+          command = [ "npx" "-y" "puppeteer-mcp" "--stdio" ];
+          enabled = false;
+          timeout = 60000;
       };
 
       agent = {
