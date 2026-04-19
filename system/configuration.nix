@@ -121,10 +121,21 @@ in
   };
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
-  virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation = {
+    docker = {
+      enable = true;
+      daemon.settings = {
+        insecure-registries = [ "172.28.255.200" ];
+      };
+    };
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+    };
+  };
   users.extraGroups.vboxusers.members = [ "ricky" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   time.timeZone = "Europe/Lisbon";
 
