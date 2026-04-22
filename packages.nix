@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     brightnessctl
+    supertuxkart
     cloudflared
     deno
     deploy-rs
@@ -16,5 +17,6 @@
     wrangler
     zulip
     sops
+    google-chrome
   ];
 }

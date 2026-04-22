@@ -21,6 +21,12 @@
           enabled = false;
           timeout = 15000;
         };
+        chrome-devtools = {
+          type = "local";
+          command = [ "npx" "-y" "chrome-devtools-mcp" "--stdio" ];
+          enabled = false;
+          timeout = 60000;
+        };
         cloudflare-radar = {
           type = "remote";
           url = "https://radar.mcp.cloudflare.com/mcp";
@@ -36,11 +42,11 @@
 
       agent = {
         build = {
-          model = "opencode-go/minimax-m2.7";
+          model = "opencode-go/kimi-k2.6";
           description = "Heavy lifting: Use for writing complex logic and multi-file changes.";
         };
         plan = {
-          model = "opencode-go/kimi-k2.5";
+          model = "opencode-go/kimi-k2.6";
           description = "The Thinker: Use Kimi's huge context to explain files or map out features.";
         };
       };
@@ -53,12 +59,12 @@
         };
         debug = {
           template = "Run the tests and fix any failing logic. Use terminal commands to verify.";
-          model = "opencode-go/glm-5";
-          description = "Deep backend debug pass using GLM-5";
+          model = "opencode-go/glm-5.1";
+          description = "Deep backend debug pass using GLM-5.1";
         };
         quick = {
           template = "$ARGUMENTS";
-          model = "opencode-go/minimax-m2.5";
+          model = "opencode-go/qwen3.5-plus";
           description = "Fast & cheap task (saves your 'premium' logic for later)";
         };
         issue = {
