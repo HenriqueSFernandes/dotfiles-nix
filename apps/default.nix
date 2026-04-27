@@ -4,6 +4,7 @@
     ./browsers
     ./cli
     ./editors
+    ./gaming
     ./misc
     ./rofi.nix
     ./social

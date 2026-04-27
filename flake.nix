@@ -16,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    opencode-go-usage-analyzer.url = "github:HenriqueSFernandes/opencode-go-usage-analyzer";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     zen-browser = {
@@ -30,6 +31,7 @@
     , spicetify-nix
     , zen-browser
     , nixvim
+    , opencode-go-usage-analyzer
     , silentSDDM
     , sops-nix
     , ...
