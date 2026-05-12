@@ -202,6 +202,8 @@ in
 
   programs.hyprland.enable = true;
 
+  programs.steam.enable = true;
+
   programs.fish.enable = true;
 
   nixpkgs.config.allowUnfree = true;

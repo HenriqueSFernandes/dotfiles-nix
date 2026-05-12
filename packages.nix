@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.system}.default
     brightnessctl
+    jetbrains.datagrip
+    openvpn
     rquickshare
     supertuxkart
     cloudflared
