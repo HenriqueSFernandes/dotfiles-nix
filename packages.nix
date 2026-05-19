@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.system}.default
+    platformio
     brightnessctl
     jetbrains.datagrip
     openvpn

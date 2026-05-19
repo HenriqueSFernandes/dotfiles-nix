@@ -179,6 +179,11 @@ in
 
   services.printing.enable = true;
 
+  services.udev.packages = [
+    pkgs.platformio-core
+    pkgs.openocd
+  ];
+
   services.udev.extraRules = ''
     SUBSYSTEM=="powercap", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod a+r /sys/class/powercap/%k/energy_uj"
     SUBSYSTEM=="powercap", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod a+r /sys/class/powercap/%k/max_energy_range_uj"
