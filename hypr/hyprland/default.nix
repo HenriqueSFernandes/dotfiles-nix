@@ -7,6 +7,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
@@ -71,7 +72,6 @@
         ];
       };
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
         special_scale_factor = 0.8;
       };
