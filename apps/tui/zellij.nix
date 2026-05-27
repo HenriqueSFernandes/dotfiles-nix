@@ -41,50 +41,86 @@
       };
     };
     layouts = {
-      uni = {
-        layout = {
-          cwd = "~/Desktop/NIAEFEUP/uni/packages/uni_app";
-          default_tab_template = {
-            children = [ ];
-            pane = [
+      ide = {
+        layout =
+          {
+            _children = [
               {
-                size = 1;
-                borderless = true;
-                plugin.location = "zellij:tab-bar";
+                default_tab_template = {
+                  _children = [
+                    {
+                      pane = {
+                        size = 1;
+                        borderless = true;
+                        plugin = {
+                          location = "zellij:tab-bar";
+                        };
+                      };
+                    }
+                    { "children" = { }; }
+                    # {
+                    #   pane = {
+                    #     size = 2;
+                    #     borderless = true;
+                    #     plugin = {
+                    #       location = "zellij:status-bar";
+                    #     };
+                    #   };
+                    # }
+                  ];
+                };
               }
               {
-                size = 1;
-                borderless = true;
-                plugin.location = "zellij:status-bar";
+                tab = {
+                  _props = {
+                    name = "Neovim";
+                    focus = true;
+                  };
+                  _children = [
+                    {
+                      pane = {
+                        command = "nvim";
+                        args = ".";
+                      };
+                    }
+                  ];
+                };
+              }
+              {
+                tab = {
+                  _props = {
+                    name = "Terminals";
+                    focus = false;
+                    split_direction = "vertical";
+                  };
+                  _children = [
+                    {
+                      pane = { };
+                    }
+                    {
+                      pane = { };
+                    }
+                  ];
+                };
+
+              }
+              {
+                tab = {
+                  _props = {
+                    name = "Opencode";
+                    focus = false;
+                  };
+                  _children = [
+                    {
+                      pane = {
+                        command = "opencode";
+                      };
+                    }
+                  ];
+                };
               }
             ];
           };
-
-          tab = [
-            {
-              name = "editor";
-              split_direction = "vertical";
-              pane = {
-                command = "nvim";
-                args = [ "." ];
-              };
-            }
-            {
-              name = "flutter";
-              split_direction = "vertical";
-              pane = [
-                { }
-                { }
-              ];
-            }
-            {
-              name = "files";
-              pane = {
-                command = "yazi";
-              };
-            }
-          ];
-        };
       };
     };
   };

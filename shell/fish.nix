@@ -6,6 +6,7 @@
 
     shellAliases = {
       ze = "zellij";
+      ide = "zellij --layout ide";
       lg = "lazygit";
       ld = "lazydocker";
       nv = "nvim";
