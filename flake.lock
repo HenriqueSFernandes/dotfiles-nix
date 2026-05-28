@@ -144,6 +144,22 @@
         "type": "github"
       }
     },
+    "libnbtplusplus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772016279,
+        "narHash": "sha256-7itkptyjoRcXfGLwg1/jxajetZ3a4mDc66+w4X6yW8s=",
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
+        "rev": "687e43031df0dc641984b4256bcca50d5b3f7de3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1778869304,
@@ -210,6 +226,19 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1774709303,
+        "narHash": "sha256-D4ely1FsBcvtj/qSrNhSWpq+CUZKNiKwJIxpxnfy9o4=",
+        "rev": "8110df5ad7abf5d4c0f6fb0f8f978390e77f9685",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre971119.8110df5ad7ab/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1779508470,
         "narHash": "sha256-OtXX32ZNu00Co+iVgV3ffkJVgVVcc0Sy56DdfJm+UQM=",
         "rev": "29916453413845e54a65b8a1cf996842300cd299",
@@ -221,7 +250,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1778443072,
         "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
@@ -301,6 +330,25 @@
         "type": "github"
       }
     },
+    "prismlauncher-cracked": {
+      "inputs": {
+        "libnbtplusplus": "libnbtplusplus",
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1776795718,
+        "narHash": "sha256-YrqHeE9ZEnmxJiXE+IBAxbmNRFPE7mn9KbxZ3Mpu388=",
+        "owner": "Diegiwg",
+        "repo": "PrismLauncher-Cracked",
+        "rev": "0c20d448a3c89cbff85ef5dc7420bf60dc1e65ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Diegiwg",
+        "repo": "PrismLauncher-Cracked",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -308,6 +356,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "opencode-go-usage-analyzer": "opencode-go-usage-analyzer",
+        "prismlauncher-cracked": "prismlauncher-cracked",
         "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
@@ -356,7 +405,7 @@
     },
     "spicetify-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "systems": "systems_4"
       },
       "locked": {
@@ -436,7 +485,7 @@
     "zen-browser": {
       "inputs": {
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1779781734,
