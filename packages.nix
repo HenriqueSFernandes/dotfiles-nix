@@ -2,6 +2,13 @@
 {
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.system}.default
+    (inputs.quickshell.packages.${pkgs.system}.default.withModules [
+      pkgs.qt6.qtmultimedia
+      pkgs.qt6.qtsvg
+      pkgs.qt6.qtimageformats
+      pkgs.qt6.qtmultimedia
+      pkgs.qt6.qt5compat
+    ])
     platformio
     brightnessctl
     jetbrains.datagrip
@@ -20,7 +27,6 @@
     thunar
     tldr
     wrangler
-    zulip
     sops
     google-chrome
   ];

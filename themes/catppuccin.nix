@@ -23,9 +23,6 @@
     opencode.enable = true;
     opencode.flavor = "mocha";
 
-    ghostty.enable = true;
-    ghostty.flavor = "mocha";
-
     zellij.enable = true;
     zellij.flavor = "mocha";
 

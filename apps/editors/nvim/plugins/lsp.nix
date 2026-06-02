@@ -55,6 +55,7 @@
               gofumpt = true;
             };
           };
+          qmlls.enable = true;
           yamlls = {
             enable = true;
             settings = {
