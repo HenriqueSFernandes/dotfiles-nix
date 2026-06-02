@@ -2,6 +2,9 @@
 {
   catppuccin = {
 
+    enable = true;
+    autoEnable = false;
+
     fish.enable = true;
     fish.flavor = "mocha";
 
