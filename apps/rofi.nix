@@ -21,31 +21,56 @@ let
     esac
   '';
 
+  clip-history = pkgs.writeShellScriptBin "clip-history" ''
+    tmp_dir="/tmp/cliphist"
+    rm -rf "$tmp_dir"
+
+    if [[ -n "$1" ]]; then
+      cliphist decode <<<"$1" | wl-copy
+      exit
+    fi
+
+    mkdir -p "$tmp_dir"
+
+    read -r -d \'\' prog <<EOF
+    /^[ 0-9 ] + \s<meta http-equiv=/ { next }
+    match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
+      system("echo " grp[1] "\\\\\t | cliphist decode >$tmp_dir/"grp[1]"."grp[3])
+      print \$0"\0icon\x1f$tmp_dir/"grp[1]"."grp[3]
+      next
+    }
+    1
+    EOF
+    cliphist list | gawk "$prog"
+  '';
+
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
     chosen=$(printf "󰌾  Lock\n󰒲  Hibernate\n󰍃  Log Off\n󰑓  Reboot\n󰐥  Power Off" \
-      | ${pkgs.rofi}/bin/rofi \
-        -dmenu \
-        -p "  Power " \
-        -theme-str 'listview { columns: 1; lines: 5; }')
+    | ${pkgs.rofi}/bin/rofi \
+    -dmenu \
+    -p "  Power " \
+    -theme-str 'listview { columns: 1;
+    lines: 5; }')
     case "$chosen" in
-      "󰌾  Lock")      hyprlock ;;
-      "󰒲  Hibernate") systemctl hibernate ;;
-      "󰍃  Log Off")   loginctl terminate-user "$USER" ;;
-      "󰑓  Reboot")    systemctl reboot ;;
-      "󰐥  Power Off") systemctl poweroff ;;
+    "󰌾  Lock")      hyprlock ;;
+    "󰒲  Hibernate") systemctl hibernate ;;
+    "󰍃  Log Off")   loginctl terminate-user "$USER" ;;
+    "󰑓  Reboot")    systemctl reboot ;;
+    "󰐥  Power Off") systemctl poweroff ;;
     esac
   '';
 in
 {
-  home.packages = [ hm-search powermenu screenshotmenu ];
+  home.packages = [ hm-search powermenu screenshotmenu clip-history ];
   programs.rofi = {
     enable = true;
     extraConfig = {
       show-icons = true;
       terminal = "ghostty";
 
-      modes = [ "drun" "window" "hm:hm-search" ];
+      modes = [ "drun" "window" "hm:hm-search" "cliphist:clip-history" ];
       display-hm = "   HM Options ";
+      display-cliphist = "   Clipboard History ";
 
       drun-display-format = "{icon} {name}";
       display-drun = "   Apps ";
@@ -67,7 +92,7 @@ in
           blue = mkLiteral "${colors.blue.hex}";
           fg-col = mkLiteral "${colors.text.hex}";
           fg-col2 = mkLiteral "${colors.red.hex}";
-          grey = mkLiteral "${colors.overlay0.hex}";
+          grey = mkLiteral "${colors.overlay0.hex} ";
 
           width = 800;
           font = "FiraCode Nerd Font Mono 14";
@@ -162,3 +187,4 @@ in
       };
   };
 }
+

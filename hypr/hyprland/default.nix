@@ -17,6 +17,7 @@
       exec-once = [
         "swww-daemon"
         "swww img ${../../wallpapers/cat_pacman.png} --transition-type simple"
+        "wl-paste --watch cliphist store"
       ];
 
       general = {
