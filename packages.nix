@@ -22,6 +22,9 @@
     hunspellDicts.en_US
     hunspellDicts.pt_PT
     hyprpicker
+    wl-clipboard
+    xdg-utils
+    cliphist
     libreoffice-qt
     solaar
     thunar
