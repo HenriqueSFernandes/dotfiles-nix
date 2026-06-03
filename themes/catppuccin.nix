@@ -8,6 +8,9 @@
     fish.enable = true;
     fish.flavor = "mocha";
 
+    ghostty.enable = true;
+    ghostty.flavor = "mocha";
+
     btop.enable = true;
     btop.flavor = "mocha";
 

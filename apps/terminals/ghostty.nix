@@ -14,8 +14,6 @@
       cursor-style = "bar";
       mouse-hide-while-typing = true;
       keybind = "ctrl+backspace=text:\\x17";
-
-      theme = "Catppuccin Mocha";
     };
   };
 }
