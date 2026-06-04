@@ -10,6 +10,7 @@
       "$mod, V, togglefloating"
       "$mod, R, exec, $menu"
       "$mod, W, exec, rofi -show window"
+      "$mod SHIFT, V, exec, rofi -show cliphist"
       "$mod, n, layoutmsg, togglesplit"
 
       # Move focus with mod + hjkl

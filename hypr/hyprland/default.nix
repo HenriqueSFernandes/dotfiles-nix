@@ -37,6 +37,9 @@
           color = "rgba(1a1a1aee)";
         };
       };
+      windowrule = [
+        "match:title (Clipboard History), float on"
+      ];
       cursor = {
         inactive_timeout = 5;
         no_hardware_cursors = 1;
