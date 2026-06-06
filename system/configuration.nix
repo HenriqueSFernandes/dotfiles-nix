@@ -34,12 +34,6 @@ in
     age.keyFile = "/home/ricky/.config/sops/age/keys.txt";
 
     secrets = {
-      "cloudflare-account-id" = {
-        owner = "ricky";
-      };
-      "cloudflare-gateway-id" = {
-        owner = "ricky";
-      };
       "figma-api-key" = {
         owner = "ricky";
       };
@@ -49,12 +43,6 @@ in
   programs.nix-ld.enable = true;
 
   programs.fish.interactiveShellInit = ''
-    if test -f ${config.sops.secrets.cloudflare-account-id.path}
-      set -gx CLOUDFLARE_ACCOUNT_ID (cat ${config.sops.secrets.cloudflare-account-id.path})
-    end
-    if test -f ${config.sops.secrets.cloudflare-gateway-id.path}
-      set -gx CLOUDFLARE_GATEWAY_ID (cat ${config.sops.secrets.cloudflare-gateway-id.path})
-    end
     if test -f ${config.sops.secrets.figma-api-key.path}
       set -gx FIGMA_API_KEY (cat ${config.sops.secrets.figma-api-key.path})
     end
