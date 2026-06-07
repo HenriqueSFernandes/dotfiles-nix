@@ -13,7 +13,7 @@
     package = pkgs.opencode;
     settings = {
       "$schema" = "https://opencode.ai/config.json";
-      model = "opencode-go/minimax-m3";
+      model = "opencode-go/kimi-k2.6";
       mcp = {
         figma = {
           type = "local";

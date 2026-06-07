@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-t3code.url = "github:limwa/nix-t3code";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +39,6 @@
     , nixvim
     , opencode-go-usage-analyzer
     , prismlauncher-cracked
-    , nix-t3code
     , silentSDDM
     , sops-nix
     , ...

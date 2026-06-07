@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.system}.default
-    inputs.nix-t3code.packages.${pkgs.system}.t3code-nightly
     (inputs.quickshell.packages.${pkgs.system}.default.withModules [
       pkgs.qt6.qtmultimedia
       pkgs.qt6.qtsvg
@@ -13,6 +12,7 @@
     platformio
     brightnessctl
     jetbrains.datagrip
+    libnotify
     openvpn
     rquickshare
     supertuxkart

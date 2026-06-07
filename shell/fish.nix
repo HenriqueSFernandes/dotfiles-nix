@@ -44,6 +44,8 @@
       set -g fish_greeting ""
 
       set -g fish_color_command green --bold
+
+      set -gx PATH /home/ricky/.local/bin $PATH
     '';
   };
 }
