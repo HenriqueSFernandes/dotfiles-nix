@@ -27,10 +27,6 @@
           enabled = false;
           timeout = 60000;
         };
-          type = "remote";
-          enabled = false;
-          timeout = 60000;
-        };
       };
     };
   };
