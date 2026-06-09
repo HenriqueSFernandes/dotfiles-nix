@@ -220,14 +220,20 @@ in
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
+    prime =
+      if hostname == "ricky-laptop" then {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        amdgpuBusId = "PCI:6:0:0";
+        nvidiaBusId = "PCI:1:0:0";
+      } else {
+        offload = {
+          enable = false;
+          enableOffloadCmd = false;
+        };
       };
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
