@@ -9,29 +9,31 @@
       pkgs.qt6.qtmultimedia
       pkgs.qt6.qt5compat
     ])
-    platformio
     brightnessctl
-    jetbrains.datagrip
-    libnotify
-    openvpn
-    rquickshare
-    supertuxkart
+    file-roller
+    p7zip
+    cliphist
     cloudflared
     deno
     deploy-rs
+    fladder
+    google-chrome
     hunspell
     hunspellDicts.en_US
     hunspellDicts.pt_PT
     hyprpicker
-    wl-clipboard
-    xdg-utils
-    cliphist
+    jetbrains.datagrip
+    libnotify
     libreoffice-qt
+    openvpn
+    platformio
+    rquickshare
     solaar
-    thunar
-    tldr
-    wrangler
     sops
-    google-chrome
+    supertuxkart
+    tldr
+    wl-clipboard
+    wrangler
+    xdg-utils
   ];
 }

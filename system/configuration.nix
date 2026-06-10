@@ -79,8 +79,6 @@ in
     };
   };
 
-  services.gvfs.enable = true;
-
   hardware.logitech.wireless = {
     enable = true;
     enableGraphical = true;
@@ -114,12 +112,6 @@ in
       enable = true;
       daemon.settings = {
         insecure-registries = [ "172.28.255.200" ];
-      };
-    };
-    virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
       };
     };
   };
@@ -198,6 +190,22 @@ in
   programs.steam.enable = true;
 
   programs.fish.enable = true;
+
+  services = {
+    gvfs.enable = true;
+    tumbler.enable = true;
+  };
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-volman
+      thunar-vcs-plugin
+      thunar-shares-plugin
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+    ];
+  };
 
   nixpkgs.config.allowUnfree = true;
 
