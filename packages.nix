@@ -11,6 +11,7 @@
     ])
     brightnessctl
     file-roller
+    zathura
     p7zip
     cliphist
     cloudflared
