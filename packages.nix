@@ -10,6 +10,7 @@
       pkgs.qt6.qt5compat
     ])
     brightnessctl
+    sshfs
     file-roller
     zathura
     p7zip
