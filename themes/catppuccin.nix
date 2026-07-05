@@ -4,6 +4,7 @@
 
     enable = true;
     autoEnable = false;
+    accent = "blue";
 
     fish.enable = true;
     fish.flavor = "mocha";
@@ -15,15 +16,12 @@
     btop.flavor = "mocha";
 
     fzf.enable = true;
-    fzf.accent = "blue";
     fzf.flavor = "mocha";
 
     eza.enable = true;
-    eza.accent = "blue";
     eza.flavor = "mocha";
 
     yazi.enable = true;
-    yazi.accent = "blue";
     yazi.flavor = "mocha";
 
     opencode.enable = true;
@@ -46,19 +44,15 @@
     cursors.flavor = "mocha";
 
     hyprlock.enable = true;
-    hyprlock.accent = "blue";
     hyprlock.flavor = "mocha";
 
     vesktop.enable = true;
-    vesktop.accent = "blue";
     vesktop.flavor = "mocha";
 
     lazygit.enable = true;
-    lazygit.accent = "blue";
     lazygit.flavor = "mocha";
 
     element-desktop.enable = true;
-    element-desktop.accent = "blue";
     element-desktop.flavor = "mocha";
   };
 }
