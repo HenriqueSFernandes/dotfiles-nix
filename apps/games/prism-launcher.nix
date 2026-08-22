@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
   home.packages = [
-    inputs.prismlauncher-cracked.packages.${pkgs.system}.default
+    inputs.prismlauncher-cracked.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

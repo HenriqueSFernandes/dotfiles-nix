@@ -19,6 +19,7 @@
     homeDirectory = "/home/ricky";
 
     stateVersion = "25.11";
+    pointerCursor.enable = true;
 
     file = {
       ".agents/skills".source =

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    gemini-cli
     manix
     pamixer
     playerctl

@@ -42,6 +42,8 @@ in
 
   programs.nix-ld.enable = true;
 
+  programs.solaar.enable = true;
+
   programs.fish.interactiveShellInit = ''
     if test -f ${config.sops.secrets.figma-api-key.path}
       set -gx FIGMA_API_KEY (cat ${config.sops.secrets.figma-api-key.path})
@@ -81,7 +83,6 @@ in
 
   hardware.logitech.wireless = {
     enable = true;
-    enableGraphical = true;
   };
 
   hardware.bluetooth = {

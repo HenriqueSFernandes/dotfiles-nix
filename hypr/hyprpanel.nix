@@ -1,8 +1,8 @@
 { ... }:
 {
-  programs.hyprpanel = {
+  services.wayle = {
     enable = true;
-    systemd.enable = true;
+    # systemd.enable = true;
     settings = {
       bar.customModules.storage.paths = [
         "/"
