@@ -27,6 +27,7 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pi.url = "github:lukasl-dev/pi.nix";
   };
 
   outputs =
@@ -41,6 +42,7 @@
     , prismlauncher-cracked
     , silentSDDM
     , sops-nix
+    , pi
     , ...
     }@inputs:
     let
@@ -71,6 +73,7 @@
                   ./home.nix
                   catppuccin.homeModules.catppuccin
                   spicetify-nix.homeManagerModules.default
+                  pi.homeModules.default
                 ];
               };
             }

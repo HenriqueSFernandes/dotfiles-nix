@@ -4,6 +4,8 @@
     ./yazi.nix
     ./zellij.nix
     ./opencode.nix
+    ./herdr.nix
+    ./pi.nix
   ];
 
   programs = {
