@@ -3,66 +3,121 @@
   services.wayle = {
     enable = true;
     # systemd.enable = true;
+    autoInstallDependencies = true;
     settings = {
-      bar.customModules.storage.paths = [
-        "/"
-      ];
-      theme.font.name = "FiraCode Nerd Font";
-      theme.font.label = "FiraCode Nerd Font Medium";
-      theme.bar.menus.enableShadow = false;
-      scalingPriority = "gdk";
-      theme.bar.floating = false;
-      theme.bar.buttons.enableBorders = false;
-      theme.bar.enableShadow = false;
-      theme.bar.outer_spacing = "0.3em";
-      theme.font.weight = 600;
-      bar.launcher.icon = "󱄅";
-      theme.bar.menus.opacity = 100;
-      theme.bar.menus.background = "#11111b";
-      theme.bar.transparent = true;
-      theme.bar.buttons.style = "split";
-      theme.bar.buttons.background = "#11111b";
-      theme.bar.buttons.monochrome = false;
-      bar.layouts = {
-        "*" = {
-          left = [
-            "dashboard"
-            "workspaces"
-            "media"
-          ];
-          middle = [
-            "clock"
-          ];
-          right = [
-            "volume"
-            "network"
-            "bluetooth"
-            "battery"
-            "hyprsunset"
-            "kbinput"
-            "systray"
-            "notifications"
-          ];
+      bar = {
+        layout = [
+          {
+            center = [ "clock" ];
+            left = [
+              "dashboard"
+              "hyprland-workspaces"
+              "media"
+              "keyboard-input"
+            ];
+            monitor = "*";
+            right = [
+              "battery"
+              "bluetooth"
+              "network"
+              "microphone"
+              "volume"
+              "notifications"
+            ];
+            show = true;
+          }
+        ];
+      };
+      menus = {
+        clock = {
+          time = {
+            hideSeconds = true;
+            military = true;
+          };
+          weather = {
+            location = "Porto";
+            unit = "metric";
+          };
+        };
+        media = {
+          displayTime = false;
         };
       };
-      menus.clock.time.hideSeconds = true;
-      menus.clock.time.military = true;
-      menus.clock.weather.location = "Porto";
-      menus.clock.weather.unit = "metric";
-      theme.bar.buttons.modules.kbLayout.enableBorder = false;
-      theme.bar.buttons.modules.updates.enableBorder = false;
-      bar.workspaces.monitorSpecific = true;
-      theme.bar.buttons.workspaces.enableBorder = false;
-      bar.workspaces.show_numbered = true;
-      bar.workspaces.show_icons = false;
-      bar.workspaces.workspaceMask = false;
-      bar.workspaces.numbered_active_indicator = "highlight";
-      bar.workspaces.ignored = "-9.";
-      bar.media.show_active_only = true;
-      menus.media.displayTime = false;
-      theme.bar.buttons.modules.submap.enableBorder = false;
-      bar.customModules.hyprsunset.label = false;
-      bar.customModules.hyprsunset.temperature = "5000k";
+      modules = {
+        bluetooth = {
+          label-show = false;
+        };
+        dashboard = {
+          icon-bg-color = "status-info";
+        };
+        hyprland-workspaces = {
+          monitor-specific = false;
+          show-special = false;
+        };
+        media = {
+          border-color = "green";
+          icon-bg-color = "green";
+          label-color = "green";
+        };
+        network = {
+          label-show = false;
+        };
+        notifications = {
+          label-show = false;
+        };
+      };
+      scalingPriority = "gdk";
+      styling = {
+        palette = {
+          blue = "#74c7ec";
+          elevated = "#1e1e2e";
+          fg = "#cdd6f4";
+          fg-muted = "#bac2de";
+          green = "#a6e3a1";
+          primary = "#b4befe";
+          red = "#f38ba8";
+          surface = "#1e1e2e";
+          yellow = "#f9e2af";
+        };
+      };
+      theme = {
+        bar = {
+          buttons = {
+            background = "#11111b";
+            enableBorders = false;
+            modules = {
+              kbLayout = {
+                enableBorder = false;
+              };
+              submap = {
+                enableBorder = false;
+              };
+              updates = {
+                enableBorder = false;
+              };
+            };
+            monochrome = false;
+            style = "split";
+            workspaces = {
+              enableBorder = false;
+            };
+          };
+          enableShadow = false;
+          floating = false;
+          menus = {
+            background = "#11111b";
+            enableShadow = false;
+            opacity = 100;
+          };
+          outer_spacing = "0.3em";
+          transparent = true;
+        };
+        font = {
+          label = "FiraCode Nerd Font Medium";
+          name = "FiraCode Nerd Font";
+          weight = 600;
+        };
+      };
     };
   };
 }

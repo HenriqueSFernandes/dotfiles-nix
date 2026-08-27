@@ -1,19 +1,18 @@
 { hostname, ... }:
+let
+  monitors =
+    if hostname == "ricky-laptop" then ''
+      hl.monitor({ output = "eDP-1", mode = "1920x1080@120", position = "1920x0", scale = 1 })
+      hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@240", position = "0x0", scale = 1 })
+    ''
+    else if hostname == "ricky-desktop" then ''
+      hl.monitor({ output = "DP-2", mode = "1920x1080@240", position = "1920x0", scale = 1 })
+      hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "0x0", scale = 1 })
+    ''
+    else ''
+      hl.monitor({ output = "eDP-1", mode = "1920x1080@120", position = "1920x0", scale = 1 })
+    '';
+in
 {
-  wayland.windowManager.hyprland.settings.monitor =
-    if hostname == "ricky-laptop" then [
-      "eDP-1, 1920x1080@120, 1920x0, 1"
-      "HDMI-A-1, 1920x1080@240, 0x0, 1"
-      # "eDP-1, 1920x1080@120, 0x1080, 1"
-      # "HDMI-A-1, 1920x1080@240, 0x0, 1"
-      # "eDP-1, 1920x1080@120, 0x0, 1"
-      # "HDMI-A-1, 1920x1080@240, 1920x0, 1"
-    ]
-    else if hostname == "ricky-desktop" then [
-      "DP-2, 1920x1080@240, 1920x0, 1"
-      "HDMI-A-1, 1920x1080@60, 0x0, 1"
-    ]
-    else [
-      "eDP-1, 1920x1080@120, 1920x0, 1"
-    ];
+  wayland.windowManager.hyprland.extraLuaFiles."40-monitors" = monitors;
 }
