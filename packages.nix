@@ -25,14 +25,15 @@
     hunspellDicts.pt_PT
     hyprpicker
     jetbrains.datagrip
+    jq
     libnotify
     libreoffice-qt
     openvpn
     platformio
     rquickshare
     solaar
+    omp
     sops
-    supertuxkart
     tldr
     wl-clipboard
     wrangler

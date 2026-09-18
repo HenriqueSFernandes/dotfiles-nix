@@ -1,5 +1,30 @@
 { ... }:
 {
+  # <C-h/j/k/l> move between nvim splits; at a split edge, cross into the
+  # neighbouring herdr pane. Needs $HERDR_PANE_ID (herdr-injected) and the
+  # vim-herdr-navigation herdr plugin, which owns the same chord globally.
+  programs.nixvim.extraConfigLua = ''
+    local function herdr_nav(wincmd, dir)
+      local prev = vim.api.nvim_get_current_win()
+      vim.cmd("wincmd " .. wincmd)
+      if vim.api.nvim_get_current_win() ~= prev then
+        return -- moved within nvim
+      end
+      local pane = vim.env.HERDR_PANE_ID
+      if pane == nil or pane == "" then
+        return -- not inside a herdr pane
+      end
+      local bin = vim.env.HERDR_BIN_PATH
+      if bin == nil or bin == "" then
+        bin = "herdr"
+      end
+      -- Target this pane explicitly: --current resolves to the server's
+      -- globally focused pane, which may not be the one running nvim.
+      vim.fn.system({ bin, "pane", "focus", "--direction", dir, "--pane", pane })
+    end
+    _G.herdr_nav = herdr_nav
+  '';
+
   programs.nixvim.keymaps = [
     {
       mode = [ "n" ];
@@ -82,26 +107,38 @@
     {
       mode = "n";
       key = "<C-h>";
-      action = "<C-w>h";
-      options.desc = "Move to left split";
+      action.__raw = "function() _G.herdr_nav('h', 'left') end";
+      options = {
+        silent = true;
+        desc = "Navigate left (vim/herdr)";
+      };
     }
     {
       mode = "n";
       key = "<C-j>";
-      action = "<C-w>j";
-      options.desc = "Move to below split";
+      action.__raw = "function() _G.herdr_nav('j', 'down') end";
+      options = {
+        silent = true;
+        desc = "Navigate down (vim/herdr)";
+      };
     }
     {
       mode = "n";
       key = "<C-k>";
-      action = "<C-w>k";
-      options.desc = "Move to above split";
+      action.__raw = "function() _G.herdr_nav('k', 'up') end";
+      options = {
+        silent = true;
+        desc = "Navigate up (vim/herdr)";
+      };
     }
     {
       mode = "n";
       key = "<C-l>";
-      action = "<C-w>l";
-      options.desc = "Move to right split";
+      action.__raw = "function() _G.herdr_nav('l', 'right') end";
+      options = {
+        silent = true;
+        desc = "Navigate right (vim/herdr)";
+      };
     }
     {
       mode = "i";

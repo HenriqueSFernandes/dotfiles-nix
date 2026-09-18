@@ -1,6 +1,0 @@
-{...}:
-{
-  imports = [
-    ./prism-launcher.nix
-  ];
-}

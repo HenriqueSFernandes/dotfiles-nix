@@ -62,6 +62,25 @@
           swallow_regex = "^(kitty)$";
         };
       };
+
+      # Per-device pointer overrides. `name` is the libinput device name as
+      # reported by `hyprctl devices` (lowercased, spaces -> dashes): the Nulea
+      # M505 trackball is the mouse interface of its "Compx 2.4G Receiver" dongle.
+      device = {
+        name = "compx-2.4g-receiver-mouse";
+
+        # "adaptive": libinput's speed-dependent profile - slow movements keep a
+        # ~1:1 mapping, so fine positioning is precise rather than amplified,
+        # while fast movements are accelerated. "flat" would disable acceleration.
+        # Tuning levers:
+        #   sensitivity = 0.0;   # -1.0..1.0; positive accelerates sooner and
+        #                        # stronger, negative later and weaker
+        #   accel_profile = "custom <step> <out0> <out1> ...";  # explicit curve:
+        #                        point N is the output speed (device counts/ms)
+        #                        for input speed N*step; interpolated between
+        #                        points, extrapolated past the last one
+        accel_profile = "adaptive";
+      };
     };
 
     extraLuaFiles = {

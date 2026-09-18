@@ -16,7 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    prismlauncher-cracked.url = "github:Diegiwg/PrismLauncher-Cracked";
     opencode-go-usage-analyzer.url = "github:HenriqueSFernandes/opencode-go-usage-analyzer";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
@@ -39,7 +38,6 @@
     , zen-browser
     , nixvim
     , opencode-go-usage-analyzer
-    , prismlauncher-cracked
     , silentSDDM
     , sops-nix
     , pi

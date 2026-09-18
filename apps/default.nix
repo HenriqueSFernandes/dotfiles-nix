@@ -5,7 +5,6 @@
     ./cli
     ./editors
     ./misc
-    ./games
     ./rofi.nix
     ./social
     ./spotify.nix
