@@ -29,7 +29,6 @@
     libnotify
     libreoffice-qt
     openvpn
-    platformio
     rquickshare
     solaar
     omp

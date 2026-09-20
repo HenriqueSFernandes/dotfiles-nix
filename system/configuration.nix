@@ -160,10 +160,7 @@ in
 
   services.printing.enable = true;
 
-  services.udev.packages = [
-    pkgs.platformio-core
-    pkgs.openocd
-  ];
+
 
   services.udev.extraRules = ''
     SUBSYSTEM=="powercap", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod a+r /sys/class/powercap/%k/energy_uj"
@@ -245,7 +242,11 @@ in
       };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+    max-jobs = 4;
+  };
   fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 
   fonts.fontconfig.enable = true;
