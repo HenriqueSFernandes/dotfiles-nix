@@ -40,7 +40,7 @@
         input = {
           kb_layout = "us, us";
           kb_variant = "basic, intl";
-          kb_options = "caps:escape, grp:win_space_toggle";
+          kb_options = "caps:escape, grp:alt_space_toggle";
           numlock_by_default = true;
           follow_mouse = 1;
           touchpad = {
@@ -95,6 +95,7 @@
             hl.exec_cmd("swww-daemon")
             hl.exec_cmd("swww img ${../../wallpapers/cat_pacman.png} --transition-type simple")
             hl.exec_cmd("wl-paste --watch cliphist store")
+            hl.exec_cmd("quickshell")
           end)
         '';
       };

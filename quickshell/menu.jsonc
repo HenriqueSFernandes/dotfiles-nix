@@ -1,0 +1,26 @@
+{
+  // Minimal Ricky menu
+  "apps": { "icon": "󰀻", "label": "Apps", "provider": "apps" },
+  "trigger": { "icon": "󱓞", "label": "Trigger" },
+  "system": { "icon": "", "label": "System" },
+  "update": { "icon": "", "label": "Update" },
+
+  "trigger.emoji": { "icon": "", "label": "Emoji", "provider": "emoji" },
+  "trigger.capture": { "icon": "", "label": "Capture" },
+  "trigger.capture.screenshot": { "icon": "", "label": "Screenshot", "action": "hyprshot -m region" },
+  "trigger.capture.window": { "icon": "", "label": "Window Screenshot", "action": "hyprshot -m window" },
+  "trigger.capture.screenrecord": { "icon": "", "label": "Screenrecord", "action": "echo 'screenrecord not configured'" },
+  "trigger.toggle": { "icon": "󰔎", "label": "Toggle" },
+  "trigger.toggle.nightlight": { "icon": "󰔎", "label": "Nightlight", "action": "pkill hyprsunset || hyprsunset" },
+  "trigger.toggle.stayawake": { "icon": "󰅶", "label": "Stay Awake", "action": "caffeine" },
+  "trigger.toggle.screensaver": { "icon": "󱄄", "label": "Screensaver", "action": "hyprlock" },
+
+  "system.lock": { "icon": "", "label": "Lock", "action": "hyprlock" },
+  "system.logout": { "icon": "󰍃", "label": "Logout", "action": "loginctl terminate-user $USER" },
+  "system.reboot": { "icon": "󰜉", "label": "Reboot", "action": "systemctl reboot" },
+  "system.poweroff": { "icon": "󰐥", "label": "Power Off", "action": "systemctl poweroff" },
+  "system.suspend": { "icon": "󰒲", "label": "Suspend", "action": "systemctl suspend" },
+
+  "update.system": { "icon": "", "label": "System Update", "action": "nh os switch" },
+  "update.flake": { "icon": "❄", "label": "Update Flake", "action": "nh os switch --update" }
+}

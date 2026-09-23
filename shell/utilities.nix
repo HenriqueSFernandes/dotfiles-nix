@@ -2,6 +2,11 @@
 {
   programs = {
 
+    nh = {
+      enable = true;
+      flake = "/home/ricky/dotfiles";
+    };
+
     git = {
       enable = true;
       settings = {

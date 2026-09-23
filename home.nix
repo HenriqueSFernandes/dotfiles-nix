@@ -10,6 +10,7 @@
     ./apps
     ./hypr
     ./packages.nix
+    ./quickshell.nix
     ./shell
     ./themes
   ];
