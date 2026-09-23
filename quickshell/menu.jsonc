@@ -1,9 +1,17 @@
 {
   // Minimal Ricky menu
   "apps": { "icon": "󰀻", "label": "Apps", "provider": "apps" },
+  "bookmarks": { "icon": "󰃢", "label": "Bookmarks" },
+  "clipboard": { "icon": "󰅌", "label": "Clipboard", "provider": "clipboard" },
   "trigger": { "icon": "󱓞", "label": "Trigger" },
+  "windows": { "icon": "", "label": "Windows", "provider": "windows" },
   "system": { "icon": "", "label": "System" },
   "update": { "icon": "", "label": "Update" },
+
+  "bookmarks.github": { "icon": "󰊤", "label": "GitHub", "action": "xdg-open 'https://github.com'" },
+  "bookmarks.nixpkgs": { "icon": "", "label": "Nix Packages", "action": "xdg-open 'https://search.nixos.org/packages'" },
+  "bookmarks.protonmail": { "icon": "󰇮", "label": "Proton Mail", "action": "xdg-open 'https://mail.proton.me'" },
+  "bookmarks.youtube": { "icon": "󰗃", "label": "YouTube", "action": "xdg-open 'https://youtube.com'" },
 
   "trigger.emoji": { "icon": "", "label": "Emoji", "provider": "emoji" },
   "trigger.capture": { "icon": "", "label": "Capture" },

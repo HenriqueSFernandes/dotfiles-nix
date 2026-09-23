@@ -26,6 +26,8 @@ Rectangle {
   property bool emojiRowsLoaded: false
   property var emojiList: []
   property var appUsage: ({})
+  property bool windowsRowsLoaded: false
+  property bool clipboardRowsLoaded: false
 
   signal closed()
 
@@ -170,10 +172,27 @@ Rectangle {
       root.rebuildDisplay();
     } else if (entry.kind === "app") {
       root.launchApp(entry.appId);
+    } else if (entry.kind === "window") {
+      root.runAction("hyprctl dispatch focuswindow address:" + entry.windowAddress);
+    } else if (entry.kind === "clipboard") {
+      root.runAction("cliphist decode " + entry.clipboardIndex + " | wl-copy");
     } else if (entry.kind === "emoji") {
       root.runAction("printf '%s' " + MenuModel.shellQuote(entry.action) + " | wl-copy");
     } else if (entry.action) {
       root.runAction(entry.action);
+    }
+  }
+
+  function isMathExpression(query) {
+    return /^[0-9+\-*/().\s%^]+$/.test(query) && /[0-9]/.test(query);
+  }
+
+  function evalMath(query) {
+    try {
+      // eslint-disable-next-line no-eval
+      return eval(query);
+    } catch (e) {
+      return null;
     }
   }
 
@@ -182,6 +201,29 @@ Rectangle {
     var query = root.filterText.trim();
 
     if (query) {
+      if (root.isMathExpression(query)) {
+        var result = root.evalMath(query);
+        if (result !== null && !Number.isNaN(result)) {
+          var resultText = String(result);
+          rows.push({
+            itemId: "__calculator",
+            kind: "action",
+            icon: "󰃬",
+            iconFont: "",
+            appIcon: "",
+            appId: "",
+            label: resultText,
+            target: "",
+            detail: query + " = " + resultText,
+            path: "",
+            childCount: 0,
+            action: "printf '%s' " + MenuModel.shellQuote(resultText) + " | wl-copy",
+            provider: "",
+            score: -10000,
+            section: "calculator"
+          });
+        }
+      }
       for (var i = 0; i < root.itemOrder.length; i++) {
         var entry = item(root.itemOrder[i]);
         if (!entry || entry.id === "root") continue;
@@ -227,6 +269,8 @@ Rectangle {
     if (!entry || !entry.provider) return;
     if (entry.provider === "apps") root.mergeAppRows();
     if (entry.provider === "emoji" && !root.emojiRowsLoaded) root.mergeEmojiRows();
+    if (entry.provider === "windows" && !root.windowsRowsLoaded) windowsProcess.running = true;
+    if (entry.provider === "clipboard" && !root.clipboardRowsLoaded) clipboardProcess.running = true;
   }
 
   function mergeAppRows() {
@@ -305,6 +349,83 @@ Rectangle {
     if (root.opened) root.rebuildDisplay();
   }
 
+  function mergeWindowRows(clients) {
+    clients = clients || [];
+    var windowRows = [];
+    for (var i = 0; i < clients.length; i++) {
+      var w = clients[i];
+      if (!w || !w.address) continue;
+      var cls = w.class || w.initialClass || "";
+      var title = w.title || "";
+      var label = title || cls || w.address;
+      var description = cls && title !== cls ? cls : "";
+      windowRows.push({
+        id: "windows." + w.address,
+        parent: "windows",
+        kind: "window",
+        icon: "",
+        iconFont: "",
+        appIcon: cls,
+        appId: "",
+        label: label,
+        title: "",
+        target: "",
+        description: description,
+        action: "",
+        provider: "",
+        aliases: [cls, title].filter(function (v) { return v; }),
+        order: 0,
+        windowAddress: w.address
+      });
+    }
+    var merged = MenuModel.mergeAppRows(root.items, root.itemOrder, windowRows);
+    root.items = merged.items;
+    root.itemOrder = merged.itemOrder;
+    root.windowsRowsLoaded = true;
+    if (root.opened) root.rebuildDisplay();
+  }
+
+  function mergeClipboardRows(text) {
+    var lines = String(text || "").split("\n");
+    var rows = [];
+    var seen = {};
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (!line) continue;
+      var tab = line.indexOf("\t");
+      if (tab < 0) continue;
+      var idx = line.substring(0, tab).trim();
+      var content = line.substring(tab + 1);
+      if (!content || seen[idx] || content.indexOf("[[ binary data") >= 0) continue;
+      seen[idx] = true;
+      var preview = content.length > 80 ? content.substring(0, 80) + "…" : content;
+      rows.push({
+        id: "clipboard." + idx,
+        parent: "clipboard",
+        kind: "clipboard",
+        icon: "󰅌",
+        iconFont: "",
+        appIcon: "",
+        appId: "",
+        label: preview,
+        title: "",
+        target: "",
+        description: "Clipboard entry",
+        action: "",
+        provider: "",
+        aliases: content.split(/\s+/),
+        order: 0,
+        clipboardIndex: idx,
+        clipboardContent: content
+      });
+    }
+    var merged = MenuModel.mergeAppRows(root.items, root.itemOrder, rows);
+    root.items = merged.items;
+    root.itemOrder = merged.itemOrder;
+    root.clipboardRowsLoaded = true;
+    if (root.opened) root.rebuildDisplay();
+  }
+
   function nextSelectable(direction) {
     var count = displayModel.count;
     if (count === 0) return -1;
@@ -326,6 +447,8 @@ Rectangle {
       root.itemOrder = merged.itemOrder;
       root.appRowsLoaded = false;
       root.emojiRowsLoaded = false;
+      root.windowsRowsLoaded = false;
+      root.clipboardRowsLoaded = false;
       root.mergeAppRows();
       root.openRoute(root.activeMenu);
     }
@@ -376,6 +499,31 @@ Rectangle {
     id: usageProcess
     property string appId: ""
     command: ["bash", Quickshell.shellDir + "/record-usage.sh", appId]
+  }
+
+  Process {
+    id: windowsProcess
+    command: ["bash", "-lc", "hyprctl clients -j"]
+    stdout: StdioCollector {
+      onStreamFinished: {
+        try {
+          var clients = JSON.parse(text || "[]");
+          root.mergeWindowRows(clients);
+        } catch (e) {
+          console.warn("Failed to parse hyprctl clients:", e);
+        }
+      }
+    }
+  }
+
+  Process {
+    id: clipboardProcess
+    command: ["bash", "-lc", "cliphist list"]
+    stdout: StdioCollector {
+      onStreamFinished: {
+        root.mergeClipboardRows(text || "");
+      }
+    }
   }
 
   ListModel {
@@ -430,6 +578,7 @@ Rectangle {
           model: categoryModel
 
           delegate: Rectangle {
+            id: catDelegate
             required property string id
             required property string icon
             required property string label
@@ -447,8 +596,8 @@ Rectangle {
             MouseArea {
               anchors.fill: parent
               hoverEnabled: true
-              onEntered: parent.scale = 1.02
-              onExited: parent.scale = 1.0
+              onEntered: catDelegate.scale = 1.02
+              onExited: catDelegate.scale = 1.0
               onClicked: root.openRoute(id)
             }
 
@@ -460,7 +609,7 @@ Rectangle {
 
               Text {
                 text: icon
-                color: parent.isSelected ? Colors.accentForeground : Colors.foreground
+                color: catDelegate.isSelected ? Colors.accentForeground : Colors.foreground
                 font.pointSize: 14
                 font.family: "FiraCode Nerd Font Mono"
                 Layout.alignment: Qt.AlignVCenter
@@ -469,9 +618,9 @@ Rectangle {
               Text {
                 Layout.fillWidth: true
                 text: label
-                color: parent.isSelected ? Colors.accentForeground : Colors.foreground
+                color: catDelegate.isSelected ? Colors.accentForeground : Colors.foreground
                 font.pointSize: 11
-                font.bold: parent.isSelected
+                font.bold: catDelegate.isSelected
                 elide: Text.ElideRight
                 Layout.alignment: Qt.AlignVCenter
               }
