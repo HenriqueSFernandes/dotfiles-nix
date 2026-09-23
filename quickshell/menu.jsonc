@@ -5,10 +5,9 @@
   "clipboard": { "icon": "󰅌", "label": "Clipboard", "provider": "clipboard" },
   "snippets": { "icon": "󰅍", "label": "Snippets" },
 
-  "snippets.email": { "icon": "󰇮", "label": "Email", "action": "printf '%s' 'you@example.com' | wl-copy" },
-  "snippets.phone": { "icon": "󰏲", "label": "Phone", "action": "printf '%s' '+1 234 567 890' | wl-copy" },
-  "snippets.address": { "icon": "󰤇", "label": "Address", "action": "printf '%s' '123 Main St, City, Country' | wl-copy" },
-  "snippets.lorem": { "icon": "󰦨", "label": "Lorem Ipsum", "action": "printf '%s' 'Lorem ipsum dolor sit amet.' | wl-copy" },
+  "snippets.email": { "icon": "󰇮", "label": "Email", "action": "printf '%s' 'henriquesardofernandes@gmail.com' | wl-copy" },
+  "snippets.phone": { "icon": "󰏲", "label": "Phone", "action": "printf '%s' '926256277' | wl-copy" },
+  "snippets.address": { "icon": "󰤇", "label": "Address", "action": "printf '%s' 'Rua do Cambarnal n8' | wl-copy" },
   "trigger": { "icon": "󱓞", "label": "Trigger" },
   "windows": { "icon": "", "label": "Windows", "provider": "windows" },
   "processes": { "icon": "󰓅", "label": "Processes", "provider": "processes" },
@@ -37,6 +36,6 @@
   "system.poweroff": { "icon": "󰐥", "label": "Power Off", "action": "systemctl poweroff" },
   "system.suspend": { "icon": "󰒲", "label": "Suspend", "action": "systemctl suspend" },
 
-  "update.system": { "icon": "", "label": "System Update", "action": "nh os switch" },
-  "update.flake": { "icon": "❄", "label": "Update Flake", "action": "nh os switch --update" }
+  "update.system": { "icon": "", "label": "System Update", "action": "ghostty -e bash -lc 'nh os switch'" },
+  "update.flake": { "icon": "❄", "label": "Update Flake", "action": "ghostty -e bash -lc 'nh os switch --update'" }
 }
