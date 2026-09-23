@@ -8,7 +8,7 @@ import "MenuModel.js" as MenuModel
 Rectangle {
   id: root
 
-  implicitWidth: 760
+  implicitWidth: 520
   implicitHeight: Math.min(contentLayout.implicitHeight + 32, 640)
   color: Colors.panelBackground
   radius: 24
@@ -38,9 +38,6 @@ Rectangle {
     }
   }
 
-  onActiveMenuChanged: root.rebuildCategories()
-  onItemsChanged: root.rebuildCategories()
-
   function item(id) {
     return root.items[id] || null;
   }
@@ -61,34 +58,6 @@ Rectangle {
       aliases: [],
       order: 0
     };
-  }
-
-  function rootCategories() {
-    var out = [];
-    for (var i = 0; i < root.itemOrder.length; i++) {
-      var entry = item(root.itemOrder[i]);
-      if (entry && entry.parent === "root") out.push(entry);
-    }
-    return out;
-  }
-
-  function activeRootCategory() {
-    var current = item(root.activeMenu);
-    if (!current || current.id === "root") return "";
-    var guard = 0;
-    while (current && current.parent !== "root" && guard < 32) {
-      current = item(current.parent);
-      guard++;
-    }
-    return current ? current.id : root.activeMenu;
-  }
-
-  function rebuildCategories() {
-    categoryModel.clear();
-    var cats = root.rootCategories();
-    for (var i = 0; i < cats.length; i++) {
-      categoryModel.append(cats[i]);
-    }
   }
 
   function clearFilter() {
@@ -530,88 +499,13 @@ Rectangle {
     id: displayModel
   }
 
-  ListModel {
-    id: categoryModel
-  }
-
   // --- layout ----------------------------------------------------------------
 
-  RowLayout {
+  ColumnLayout {
     id: contentLayout
     anchors.fill: parent
     anchors.margins: 16
     spacing: 16
-
-    // --- sidebar --------------------------------------------------------------
-    Rectangle {
-      id: sidebar
-      Layout.preferredWidth: 180
-      Layout.fillHeight: true
-      color: Colors.sidebarBackground
-      radius: 20
-
-      ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 16
-        spacing: 8
-
-        Repeater {
-          model: categoryModel
-
-          delegate: Rectangle {
-            id: catDelegate
-            required property string id
-            required property string icon
-            required property string label
-
-            property bool isSelected: id === root.activeRootCategory()
-
-            Layout.fillWidth: true
-            implicitHeight: 40
-            color: isSelected ? Colors.accent : "transparent"
-            radius: 10
-
-            Behavior on color { ColorAnimation { duration: 120 } }
-            Behavior on scale { NumberAnimation { duration: 100 } }
-
-            MouseArea {
-              anchors.fill: parent
-              hoverEnabled: true
-              onEntered: catDelegate.scale = 1.02
-              onExited: catDelegate.scale = 1.0
-              onClicked: root.openRoute(id)
-            }
-
-            RowLayout {
-              anchors.fill: parent
-              anchors.leftMargin: 12
-              anchors.rightMargin: 12
-              spacing: 10
-
-              Text {
-                text: icon
-                color: catDelegate.isSelected ? Colors.accentForeground : Colors.foreground
-                font.pointSize: 14
-                font.family: "FiraCode Nerd Font Mono"
-                Layout.alignment: Qt.AlignVCenter
-              }
-
-              Text {
-                Layout.fillWidth: true
-                text: label
-                color: catDelegate.isSelected ? Colors.accentForeground : Colors.foreground
-                font.pointSize: 11
-                font.bold: catDelegate.isSelected
-                elide: Text.ElideRight
-                Layout.alignment: Qt.AlignVCenter
-              }
-            }
-          }
-        }
-
-        Item { Layout.fillHeight: true }
-      }
-    }
 
     // --- main content ---------------------------------------------------------
     ColumnLayout {

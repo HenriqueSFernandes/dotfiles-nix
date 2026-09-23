@@ -48,7 +48,7 @@ ShellRoot {
       visible: root.menuOpen
       color: "transparent"
 
-      implicitWidth: 760
+      implicitWidth: 520
       implicitHeight: menuLoader.item ? menuLoader.item.implicitHeight : 580
 
       anchors {
