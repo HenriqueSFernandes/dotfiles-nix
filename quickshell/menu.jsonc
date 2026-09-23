@@ -3,8 +3,15 @@
   "apps": { "icon": "󰀻", "label": "Apps", "provider": "apps" },
   "bookmarks": { "icon": "󰃢", "label": "Bookmarks" },
   "clipboard": { "icon": "󰅌", "label": "Clipboard", "provider": "clipboard" },
+  "snippets": { "icon": "󰅍", "label": "Snippets" },
+
+  "snippets.email": { "icon": "󰇮", "label": "Email", "action": "printf '%s' 'you@example.com' | wl-copy" },
+  "snippets.phone": { "icon": "󰏲", "label": "Phone", "action": "printf '%s' '+1 234 567 890' | wl-copy" },
+  "snippets.address": { "icon": "󰤇", "label": "Address", "action": "printf '%s' '123 Main St, City, Country' | wl-copy" },
+  "snippets.lorem": { "icon": "󰦨", "label": "Lorem Ipsum", "action": "printf '%s' 'Lorem ipsum dolor sit amet.' | wl-copy" },
   "trigger": { "icon": "󱓞", "label": "Trigger" },
   "windows": { "icon": "", "label": "Windows", "provider": "windows" },
+  "processes": { "icon": "󰓅", "label": "Processes", "provider": "processes" },
   "system": { "icon": "", "label": "System" },
   "update": { "icon": "", "label": "Update" },
 
@@ -18,6 +25,7 @@
   "trigger.capture.screenshot": { "icon": "", "label": "Screenshot", "action": "hyprshot -m region" },
   "trigger.capture.window": { "icon": "", "label": "Window Screenshot", "action": "hyprshot -m window" },
   "trigger.capture.screenrecord": { "icon": "", "label": "Screenrecord", "action": "echo 'screenrecord not configured'" },
+  "trigger.colorpicker": { "icon": "󰉻", "label": "Color Picker", "action": "hyprpicker -a" },
   "trigger.toggle": { "icon": "󰔎", "label": "Toggle" },
   "trigger.toggle.nightlight": { "icon": "󰔎", "label": "Nightlight", "action": "pkill hyprsunset || hyprsunset" },
   "trigger.toggle.stayawake": { "icon": "󰅶", "label": "Stay Awake", "action": "caffeine" },

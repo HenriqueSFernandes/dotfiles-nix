@@ -28,6 +28,7 @@ Rectangle {
   property var appUsage: ({})
   property bool windowsRowsLoaded: false
   property bool clipboardRowsLoaded: false
+  property bool processRowsLoaded: false
 
   signal closed()
 
@@ -145,6 +146,8 @@ Rectangle {
       root.runAction("hyprctl dispatch focuswindow address:" + entry.windowAddress);
     } else if (entry.kind === "clipboard") {
       root.runAction("cliphist decode " + entry.clipboardIndex + " | wl-copy");
+    } else if (entry.kind === "process") {
+      root.runAction("kill -9 " + entry.processPid);
     } else if (entry.kind === "emoji") {
       root.runAction("printf '%s' " + MenuModel.shellQuote(entry.action) + " | wl-copy");
     } else if (entry.action) {
@@ -240,6 +243,7 @@ Rectangle {
     if (entry.provider === "emoji" && !root.emojiRowsLoaded) root.mergeEmojiRows();
     if (entry.provider === "windows" && !root.windowsRowsLoaded) windowsProcess.running = true;
     if (entry.provider === "clipboard" && !root.clipboardRowsLoaded) clipboardProcess.running = true;
+    if (entry.provider === "processes" && !root.processRowsLoaded) processProcess.running = true;
   }
 
   function mergeAppRows() {
@@ -395,6 +399,49 @@ Rectangle {
     if (root.opened) root.rebuildDisplay();
   }
 
+  function mergeProcessRows(text) {
+    var lines = String(text || "").split("\n");
+    var rows = [];
+    var seen = {};
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      var m = line.match(/^(\d+)\s+(\S+)(?:\s+(.*))?$/);
+      if (!m) continue;
+      var pid = parseInt(m[1], 10);
+      var comm = m[2];
+      var args = m[3] || "";
+      if (seen[pid] || pid < 50 || args.indexOf("[") === 0) continue;
+      seen[pid] = true;
+      var label = comm;
+      var detail = args ? "pid " + pid + " — " + args : "pid " + pid;
+      rows.push({
+        id: "processes." + pid,
+        parent: "processes",
+        kind: "process",
+        icon: "󰓅",
+        iconFont: "",
+        appIcon: "",
+        appId: "",
+        label: label,
+        title: "",
+        target: "",
+        description: detail,
+        action: "",
+        provider: "",
+        aliases: [comm, args].filter(function (v) { return v; }),
+        order: 0,
+        processPid: pid
+      });
+    }
+    rows.sort(function (a, b) { return a.label.toLowerCase().localeCompare(b.label.toLowerCase()); });
+    var merged = MenuModel.mergeAppRows(root.items, root.itemOrder, rows);
+    root.items = merged.items;
+    root.itemOrder = merged.itemOrder;
+    root.processRowsLoaded = true;
+    if (root.opened) root.rebuildDisplay();
+  }
+
   function nextSelectable(direction) {
     var count = displayModel.count;
     if (count === 0) return -1;
@@ -418,6 +465,7 @@ Rectangle {
       root.emojiRowsLoaded = false;
       root.windowsRowsLoaded = false;
       root.clipboardRowsLoaded = false;
+      root.processRowsLoaded = false;
       root.mergeAppRows();
       root.openRoute(root.activeMenu);
     }
@@ -491,6 +539,16 @@ Rectangle {
     stdout: StdioCollector {
       onStreamFinished: {
         root.mergeClipboardRows(text || "");
+      }
+    }
+  }
+
+  Process {
+    id: processProcess
+    command: ["bash", "-lc", "ps -eo pid=,comm=,args="]
+    stdout: StdioCollector {
+      onStreamFinished: {
+        root.mergeProcessRows(text || "");
       }
     }
   }
