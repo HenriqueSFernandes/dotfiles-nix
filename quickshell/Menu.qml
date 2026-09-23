@@ -555,25 +555,6 @@ Rectangle {
         anchors.margins: 16
         spacing: 8
 
-        ColumnLayout {
-          spacing: 2
-
-          Text {
-            text: "Launcher"
-            color: Colors.foreground
-            font.pointSize: 18
-            font.bold: true
-          }
-
-          Text {
-            text: "Ricky"
-            color: Colors.muted
-            font.pointSize: 10
-          }
-        }
-
-        Item { Layout.fillHeight: true; Layout.minimumHeight: 8 }
-
         Repeater {
           model: categoryModel
 
