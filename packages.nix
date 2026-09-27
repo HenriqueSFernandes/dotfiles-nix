@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
+    sbctl
     sshfs
     file-roller
     zathura

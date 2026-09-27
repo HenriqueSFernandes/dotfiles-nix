@@ -27,6 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pi.url = "github:lukasl-dev/pi.nix";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -41,6 +45,7 @@
     , silentSDDM
     , sops-nix
     , pi
+    , lanzaboote
     , ...
     }@inputs:
     let
@@ -58,7 +63,7 @@
           modules = [
             hardwareConfig
             systemConfig
-
+            lanzaboote.nixosMOdules.lanzaboote
             home-manager.nixosModules.home-manager
             silentSDDM.nixosModules.default
             sops-nix.nixosModules.sops
