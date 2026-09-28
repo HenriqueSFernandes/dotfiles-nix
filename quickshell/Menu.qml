@@ -678,6 +678,21 @@ Rectangle {
                 root.selectedIndex = root.nextSelectable(1);
                 event.accepted = true;
               }
+              Keys.onLeftPressed: {
+                if (filterInput.cursorPosition === 0) {
+                  root.goBack();
+                  event.accepted = true;
+                }
+              }
+              Keys.onRightPressed: {
+                if (filterInput.cursorPosition === filterInput.text.length && root.selectedIndex >= 0 && root.selectedIndex < displayModel.count) {
+                  var row = displayModel.get(root.selectedIndex);
+                  if (row && (row.kind === "menu" || row.kind === "link")) {
+                    root.activateRow(row);
+                    event.accepted = true;
+                  }
+                }
+              }
               Keys.onReturnPressed: {
                 if (root.selectedIndex >= 0 && root.selectedIndex < displayModel.count) {
                   root.activateRow(displayModel.get(root.selectedIndex));
@@ -872,6 +887,30 @@ Rectangle {
 
         Text {
           text: "↑↓ navigate"
+          color: Colors.placeholder
+          font.pointSize: 9
+        }
+
+        Text {
+          text: "·"
+          color: Colors.placeholder
+          font.pointSize: 9
+        }
+
+        Text {
+          text: "→ open"
+          color: Colors.placeholder
+          font.pointSize: 9
+        }
+
+        Text {
+          text: "·"
+          color: Colors.placeholder
+          font.pointSize: 9
+        }
+
+        Text {
+          text: "← back"
           color: Colors.placeholder
           font.pointSize: 9
         }
