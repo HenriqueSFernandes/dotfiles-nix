@@ -64,7 +64,7 @@ in
   home.packages = [ hm-search powermenu screenshotmenu clip-history ];
   programs.rofi = {
     enable = true;
-    extraConfig = {
+    settings = {
       show-icons = true;
       terminal = "ghostty";
 
