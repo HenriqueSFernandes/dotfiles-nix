@@ -7,5 +7,6 @@ M.mod = "SUPER"
 M.terminal = "ghostty"
 M.menu = "rofi -show drun"
 M.fileManager = "thunar"
+M.browser = "zen-beta"
 
 return M
