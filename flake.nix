@@ -27,50 +27,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pi.url = "github:lukasl-dev/pi.nix";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs =
-    { nixpkgs
-    , home-manager
-    , catppuccin
-    , spicetify-nix
-    , quickshell
-    , zen-browser
-    , nixvim
-    , opencode-go-usage-analyzer
-    , silentSDDM
-    , sops-nix
-    , pi
-    , lanzaboote
-    , ...
-    }@inputs:
+  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-
-      # Function to create a NixOS config for a given hostname
-      mkNixosConfig = { hostname, systemConfig, hardwareConfig }:
-        nixpkgs.lib.nixosSystem {
+    in
+    {
+      nixosConfigurations = {
+        "ricky-laptop" = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs hostname; };
+          specialArgs = { inherit inputs; };
           modules = [
-            hardwareConfig
-            systemConfig
-            lanzaboote.nixosMOdules.lanzaboote
+            ./system/hardware-laptop.nix
+            ./system/configuration.nix
             home-manager.nixosModules.home-manager
             silentSDDM.nixosModules.default
             sops-nix.nixosModules.sops
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs hostname; };
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.ricky = {
                 imports = [
                   ./home.nix
@@ -81,20 +62,6 @@
               };
             }
           ];
-        };
-    in
-    {
-      nixosConfigurations = {
-        "ricky-laptop" = mkNixosConfig {
-          hostname = "ricky-laptop";
-          systemConfig = ./system/configuration.nix;
-          hardwareConfig = ./system/hardware-laptop.nix;
-        };
-
-        "ricky-desktop" = mkNixosConfig {
-          hostname = "ricky-desktop";
-          systemConfig = ./system/configuration.nix;
-          hardwareConfig = ./system/hardware-desktop.nix;
         };
       };
     };

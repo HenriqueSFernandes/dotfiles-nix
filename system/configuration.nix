@@ -1,4 +1,4 @@
-{ pkgs, hostname, config, ... }:
+{ pkgs, config, ... }:
 
 let
   elegantTheme = pkgs.stdenv.mkDerivation {
@@ -71,6 +71,20 @@ in
       "net.bridge.bridge-nf-call-arptables" = 0;
     };
 
+    # Plymouth flicker-free graphical boot splash
+    plymouth = {
+      enable = true;
+      theme = "deus_ex";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "deus_ex" ];
+        })
+      ];
+    };
+
+    # Load the AMD iGPU driver in initrd so Plymouth can start early.
+    initrd.kernelModules = [ "amdgpu" ];
+
   };
 
   services.udisks2.enable = true;
@@ -99,7 +113,7 @@ in
     };
   };
 
-  networking.hostName = hostname;
+  networking.hostName = "ricky-laptop";
   networking.networkmanager = {
     enable = true;
     plugins = with pkgs; [
@@ -226,20 +240,14 @@ in
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    prime =
-      if hostname == "ricky-laptop" then {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        amdgpuBusId = "PCI:6:0:0";
-        nvidiaBusId = "PCI:1:0:0";
-      } else {
-        offload = {
-          enable = false;
-          enableOffloadCmd = false;
-        };
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
       };
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
   nix.settings = {
