@@ -4,6 +4,7 @@
     inputs.opencode-go-usage-analyzer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
     zotero
+    zulip
     sshfs
     file-roller
     seahorse
