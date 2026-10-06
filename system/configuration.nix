@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 
 let
   elegantTheme = pkgs.stdenv.mkDerivation {
@@ -26,6 +26,12 @@ let
 in
 {
   imports = [ ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      zotero = inputs.nixpkgs-zotero.legacyPackages.${prev.system}.zotero;
+    })
+  ];
 
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
