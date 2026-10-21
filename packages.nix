@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     inputs.opencode-go-usage-analyzer.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
+    thunderbird
+    freecad
     zotero
     spotifast
     zulip

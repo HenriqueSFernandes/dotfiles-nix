@@ -27,7 +27,7 @@ in
     };
     rules = ./rules.md;
     settings = {
-      theme = "catppuccin-mocha";
+      # theme = "catppuccin-mocha";
       defaultProvider = "opencode-go";
       defaultModel = "kimi-k2.7-code";
       defaultThinkingLevel = "high";
@@ -37,17 +37,17 @@ in
         "npm:pi-web-access"
         "npm:@juicesharp/rpiv-ask-user-question"
         "npm:pi-lens"
-        "npm:pi-hermes-memory"
         "npm:pi-nvim"
         "npm:@juicesharp/rpiv-todo"
         "npm:@plannotator/pi-extension"
         "npm:pi-powerline-footer"
         "npm:@narumitw/pi-btw"
         "npm:@narumitw/pi-usage"
+        "git:github.com/otahontas/pi-coding-agent-catppuccin"
       ];
     };
   };
 
-  home.file."${config.programs.pi-coding-agent.configDir}/themes/catppuccin-mocha.json".source =
-    ./pi-catppuccin-mocha.json;
+  # home.file."${config.programs.pi-coding-agent.configDir}/themes/catppuccin-mocha.json".source =
+  #   ./pi-catppuccin-mocha.json;
 }

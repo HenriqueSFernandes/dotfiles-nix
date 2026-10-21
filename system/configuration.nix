@@ -95,6 +95,8 @@ in
 
   services.udisks2.enable = true;
 
+  services.flatpak.enable = true;
+
   services.logind.settings = {
     Login = {
       HandlePowerKey = "ignore";
@@ -181,6 +183,10 @@ in
   services.printing.enable = true;
 
 
+  services.udev.packages = [
+    pkgs.platformio-core.udev
+    pkgs.openocd 
+  ];
 
   services.udev.extraRules = ''
     SUBSYSTEM=="powercap", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod a+r /sys/class/powercap/%k/energy_uj"
@@ -200,7 +206,7 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     description = "ricky";
-    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" "dialout" ];
   };
 
   programs.hyprland.enable = true;
