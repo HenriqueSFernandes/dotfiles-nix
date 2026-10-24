@@ -22,6 +22,7 @@
               "network"
               "microphone"
               "volume"
+              "systray"
               "notifications"
             ];
             show = true;
