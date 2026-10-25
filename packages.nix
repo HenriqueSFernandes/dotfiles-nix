@@ -7,6 +7,7 @@
     freecad
     zotero
     spotifast
+    zapfast
     zulip
     sshfs
     file-roller
