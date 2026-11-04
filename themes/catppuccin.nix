@@ -24,9 +24,6 @@
     yazi.enable = true;
     yazi.flavor = "mocha";
 
-    opencode.enable = true;
-    opencode.flavor = "mocha";
-
     zellij.enable = true;
     zellij.flavor = "mocha";
 

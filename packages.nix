@@ -1,8 +1,6 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    inputs.opencode-go-usage-analyzer.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.hex.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
     arduino-ide
     thunderbird

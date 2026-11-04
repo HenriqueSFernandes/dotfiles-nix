@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    opencode-go-usage-analyzer.url = "github:HenriqueSFernandes/opencode-go-usage-analyzer";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     zen-browser = {
@@ -28,10 +27,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pi.url = "github:lukasl-dev/pi.nix";
-    hex.url = "github:anomalyco/hex";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, hex, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
