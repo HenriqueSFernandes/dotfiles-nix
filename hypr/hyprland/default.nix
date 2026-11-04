@@ -1,4 +1,9 @@
 { ... }:
+
+let
+  # Switch layout by changing this value to "dwindle" or "scrolling",
+  selectedLayout = "dwindle";
+in
 {
   imports = [
     ./monitor.nix
@@ -18,7 +23,21 @@
           col = {
             active_border = "rgba(89B4FBEE)";
           };
-          layout = "dwindle";
+          layout = selectedLayout;
+        };
+
+        # Scrolling layout options.
+        # See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/
+        scrolling = {
+          fullscreen_on_one_column = true;
+          column_width = 0.5;
+          focus_fit_method = 1;
+          follow_focus = true;
+          follow_min_visible = 0.4;
+          explicit_column_widths = "0.333, 0.5, 0.667, 1.0";
+          wrap_focus = true;
+          wrap_swapcol = true;
+          direction = "right";
         };
 
         decoration = {

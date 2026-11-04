@@ -31,6 +31,9 @@ in
     (final: prev: {
       zotero = inputs.nixpkgs-zotero.legacyPackages.${prev.system}.zotero;
     })
+    # TEMPORARY: workaround for NixOS/nixpkgs#578265 (posthog broken with mcp 2).
+    # Remove once the fix lands in the locked nixos-unstable revision.
+    (import ../overlays/posthog-unbreak.nix)
   ];
 
   sops = {

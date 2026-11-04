@@ -28,9 +28,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pi.url = "github:lukasl-dev/pi.nix";
+    hex.url = "github:anomalyco/hex";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, hex, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
