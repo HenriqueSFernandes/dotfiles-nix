@@ -51,6 +51,8 @@ in
 
   programs.nix-ld.enable = true;
 
+  programs.dconf.enable = true;
+
   programs.solaar.enable = true;
 
   programs.fish.interactiveShellInit = ''

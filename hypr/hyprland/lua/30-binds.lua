@@ -11,7 +11,6 @@ hl.bind(vars.mod .. " + E",      hl.dsp.exec_cmd(vars.fileManager))
 hl.bind(vars.mod .. " + V",      hl.dsp.window.float({ action = "toggle" }))
 hl.bind(vars.mod .. " + R",      hl.dsp.exec_cmd(vars.menu))
 hl.bind(vars.mod .. " + B",      hl.dsp.exec_cmd(vars.browser))
-hl.bind(vars.mod .. " + SPACE",  hl.dsp.exec_cmd("quickshell-toggle-menu"))
 hl.bind(vars.mod .. " + W",      hl.dsp.exec_cmd("rofi -show window"))
 hl.bind(vars.mod .. " + SHIFT + V", hl.dsp.exec_cmd("rofi -show cliphist"))
 hl.bind(vars.mod .. " + N",      hl.dsp.layout("togglesplit"))
@@ -57,6 +56,11 @@ hl.bind(vars.mod .. " + SHIFT + CTRL + H", hl.dsp.window.move({ direction = "l" 
 hl.bind(vars.mod .. " + SHIFT + CTRL + L", hl.dsp.window.move({ direction = "r" }))
 hl.bind(vars.mod .. " + SHIFT + CTRL + K", hl.dsp.window.move({ direction = "u" }))
 hl.bind(vars.mod .. " + SHIFT + CTRL + J", hl.dsp.window.move({ direction = "d" }))
+
+-- Hex dictation hold-to-speak shortcut
+-- Press starts recording, release stops and pastes the transcript
+hl.bind("CTRL + Space", hl.dsp.exec_cmd("hex dictation start"))
+hl.bind("CTRL + Space", hl.dsp.exec_cmd("hex dictation stop"), { release = true })
 
 -- Extra binds
 hl.bind(vars.mod .. " + ALT + K", hl.dsp.exec_cmd("shutdown now"))

@@ -9,10 +9,15 @@
     ./apps
     ./hypr
     ./packages.nix
-    ./quickshell.nix
     ./shell
     ./themes
   ];
+
+  dconf.settings = {
+    "org/freedesktop/ibus/general/hotkey" = {
+      triggers = [];
+    };
+  };
 
   home = {
     username = "ricky";

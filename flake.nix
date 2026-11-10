@@ -22,27 +22,48 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     pi.url = "github:lukasl-dev/pi.nix";
+    hex.url = "github:anomalyco/hex";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, catppuccin, spicetify-nix, silentSDDM, sops-nix, pi, hex, ... }:
     let
       system = "x86_64-linux";
+      overlay = final: prev: {
+        anker-launcher = final.callPackage ./pkgs/anker-launcher { };
+
+        # Upstream hex flake currently has a stale output hash for its `rune`
+        # git dependency. Override cargoDeps with the correct hash until the
+        # upstream flake is fixed.
+        hex = inputs.hex.packages.${system}.hex.overrideAttrs (old: {
+          cargoDeps = final.rustPlatform.importCargoLock {
+            lockFile = "${inputs.hex.packages.${system}.hex.src}/Cargo.lock";
+            outputHashes = {
+              "transcribe-rs-0.3.11" = "sha256-MJJiug3LfbKsuHcL2+LJk95+j5kk/MWzb5ihdBlHLmE=";
+              "rune-0.0.1" = "sha256-FGgfrqN9OaygnVhtE2K0C85wq3aicF+ep2F10aKVd/E=";
+              "transcribe-cpp-sys-0.4.1" = "sha256-BAc2qKUMBZ5D6+Bq12NaZ1+ntWxHv95TYcAMTt3a5X8=";
+            };
+          };
+        });
+      };
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [ overlay ];
       };
     in
     {
+      packages.${system} = {
+        anker-launcher = pkgs.anker-launcher;
+        default = pkgs.anker-launcher;
+      };
+
       nixosConfigurations = {
         "ricky-laptop" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            { nixpkgs.overlays = [ overlay ]; }
             ./system/hardware-laptop.nix
             ./system/configuration.nix
             home-manager.nixosModules.home-manager

@@ -72,7 +72,6 @@ in
 
         dwindle = {
           preserve_split = true;
-          special_scale_factor = 0.8;
         };
 
         misc = {
@@ -114,7 +113,6 @@ in
             hl.exec_cmd("swww-daemon")
             hl.exec_cmd("swww img ${../../wallpapers/cat_pacman.png} --transition-type simple")
             hl.exec_cmd("wl-paste --watch cliphist store")
-            hl.exec_cmd("quickshell")
           end)
         '';
       };
