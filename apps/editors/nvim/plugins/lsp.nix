@@ -14,17 +14,36 @@
       codespell
       clang-tools
       biome
-      rustfmt
+      # rustfmt
       vscode-langservers-extracted
       tailwindcss-language-server
       yaml-language-server
     ];
 
+    # Neovim ships no Ex command for inlay hints, so provide one.
+    # Neovim renders hints per buffer; toggle only the current one.
+    userCommands.InlayHints = {
+      desc = "Toggle LSP inlay hints in the current buffer";
+      command.__raw = ''
+        function()
+          vim.lsp.inlay_hint.enable(
+            not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }),
+            { bufnr = 0 }
+          )
+        end
+      '';
+    };
+
     plugins = {
       clangd-extensions.enable = true;
       flutter-tools.enable = true;
+      rustaceanvim.enable = true;
       lsp = {
         enable = true;
+        # Inlay hints are client-side: Neovim renders them only when explicitly
+        # enabled. This defaults to false, which is why rust-analyzer (via
+        # rustaceanvim, which never turns them on itself) showed no type hints.
+        inlayHints = true;
         servers = {
           nil_ls.enable = true;
           tailwindcss.enable = true;
@@ -40,11 +59,11 @@
             enable = true;
             filetypes = [ "json" "jsonc" ];
           };
-          rust_analyzer = {
-            enable = true;
-            installCargo = true;
-            installRustc = true;
-          };
+          # rust_analyzer = {
+          #   enable = true;
+          #   installCargo = true;
+          #   installRustc = true;
+          # };
           gopls = {
             enable = true;
             settings = {
@@ -94,7 +113,7 @@
           javascriptreact = [ "biome" ];
           go = [ "goimports" "gofumpt" ];
           typescriptreact = [ "biome" ];
-          rust = [ "rustfmt" ];
+          # rust = [ "rustfmt" ];
           markdown = [ "prettierd" ];
           nix = [ "nixpkgs_fmt" ];
           c = [ "clang-format" ];

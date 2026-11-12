@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
-    anker-launcher
     brightnessctl
     arduino-ide
     thunderbird
@@ -33,12 +32,10 @@
     openvpn
     rquickshare
     solaar
-    omp
     sops
     tldr
     wl-clipboard
     wrangler
     xdg-utils
-    hex
   ];
 }

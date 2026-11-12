@@ -7,7 +7,6 @@
     ./misc
     ./rofi.nix
     ./social
-    ./spotify.nix
     ./terminals
     ./tui
   ];

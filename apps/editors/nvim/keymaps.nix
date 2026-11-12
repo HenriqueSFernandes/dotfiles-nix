@@ -166,6 +166,12 @@
     }
     {
       mode = "n";
+      key = "<leader>h";
+      action = "<cmd>InlayHints<cr>";
+      options.desc = "Toggle LSP inlay hints";
+    }
+    {
+      mode = "n";
       key = "<C-d>";
       action = "Lzz";
       options.desc = "Scroll down and center";

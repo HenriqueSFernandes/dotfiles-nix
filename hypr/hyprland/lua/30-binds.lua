@@ -57,10 +57,6 @@ hl.bind(vars.mod .. " + SHIFT + CTRL + L", hl.dsp.window.move({ direction = "r" 
 hl.bind(vars.mod .. " + SHIFT + CTRL + K", hl.dsp.window.move({ direction = "u" }))
 hl.bind(vars.mod .. " + SHIFT + CTRL + J", hl.dsp.window.move({ direction = "d" }))
 
--- Hex dictation hold-to-speak shortcut
--- Press starts recording, release stops and pastes the transcript
-hl.bind("CTRL + Space", hl.dsp.exec_cmd("hex dictation start"))
-hl.bind("CTRL + Space", hl.dsp.exec_cmd("hex dictation stop"), { release = true })
 
 -- Extra binds
 hl.bind(vars.mod .. " + ALT + K", hl.dsp.exec_cmd("shutdown now"))
