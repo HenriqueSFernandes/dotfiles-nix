@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     brightnessctl
+    protege-distribution
     arduino-ide
     thunderbird
     freecad
